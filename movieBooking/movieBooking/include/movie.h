@@ -1,12 +1,12 @@
 #pragma once
-#include<cstring>
+#include<string>
 #include<vector>
 
 struct Movie
 {
-	string title;
-	string language;
-	sting genre;
-	string date;
+	std::string title;
+	std::string language;
+	std::string genre;
+	std::string date;
 	float price;
 };

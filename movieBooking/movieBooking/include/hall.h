@@ -1,10 +1,10 @@
 #pragma once
-#include<cstring>
+#include<string>
 #include<vector>
 
 struct Hall
 {
-	string name;
-	string location;
+	std::string name;
+	std::string location;
 	// seatLayout;
 };

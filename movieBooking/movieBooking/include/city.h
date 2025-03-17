@@ -1,11 +1,11 @@
 #pragma once
 #include "cinema.h"
-#include<cstring>
+#include<string>
 #include<vector>
 
 struct City
 {
-	string name;
-	string location;
-	std::vector<Cinema>
+	std::string name;
+	std::string location;
+	std::vector<Cinema> cinemas;
 };
