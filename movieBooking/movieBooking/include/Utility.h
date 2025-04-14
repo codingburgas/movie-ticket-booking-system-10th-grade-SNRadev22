@@ -5,4 +5,3 @@ void drawHomePage();
 
 void mainMenuUser();
 void mainMenuAdmin();
-void drawMainMenu();

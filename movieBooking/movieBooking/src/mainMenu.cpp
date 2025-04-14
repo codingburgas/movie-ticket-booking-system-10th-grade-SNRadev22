@@ -23,7 +23,7 @@ void mainMenuUser()
 			break;
 
 		case 3:
-
+			break;
 		}
 	}
 }
@@ -51,7 +51,7 @@ void mainMenuAdmin()
 			break;
 
 		case 3:
-
+			break;
 		}
 	}
 }

@@ -1,11 +1,32 @@
 #include "../include/loginRgister.h"
+#include "../include/users.h"
 
 void drawHomePage()
 {
-	std::cout << "---CINEMABOOKING---" << std::endl;
-	std::cout << "1.Login" << std::endl;
-	std::cout << "2.Register" << std::endl;
-	std::cout << "3.Exit" << std::endl;
+	int choice;
+	while (true)
+	{
+		std::cout << "---CINEMABOOKING---" << std::endl;
+		std::cout << "1.Login" << std::endl;
+		std::cout << "2.Register" << std::endl;
+		std::cout << "3.Exit" << std::endl;
+		std::cout << "What would you like to do today? ";
+		std::cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			drawLoginPage();
+			break;
+
+		case 2:
+			drawRegisterPage();
+			break;
+
+		case 3:
+			break;
+		}
+	}
 }
 
 void drawLoginPage()
@@ -18,10 +39,13 @@ void drawLoginPage()
 
 void drawRegisterPage()
 {
+	User newUser;
 	std::cout << "---REGISTER---" << std::endl;
 	std::cout << "1.As user" << std::endl;
 	std::cout << "2.As admin " << std::endl;
 	std::cout << "3.As manager " << std::endl;
+
+
 }
 
 void drawRegisterUser()
