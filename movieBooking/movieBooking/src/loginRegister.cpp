@@ -1,5 +1,6 @@
 #include "../include/loginRgister.h"
 #include "../include/users.h"
+#include<fstream>
 
 void drawHomePage()
 {
@@ -39,12 +40,30 @@ void drawLoginPage()
 
 void drawRegisterPage()
 {
-	User newUser;
-	std::cout << "---REGISTER---" << std::endl;
-	std::cout << "1.As user" << std::endl;
-	std::cout << "2.As admin " << std::endl;
-	std::cout << "3.As manager " << std::endl;
+	int choice;
+	while (true)
+	{
+		std::cout << "---REGISTER---" << std::endl;
+		std::cout << "1.As user" << std::endl;
+		std::cout << "2.As admin " << std::endl;
+		std::cout << "3.As manager " << std::endl;
+		std::cin >> choice;
 
+		switch (choice)
+		{
+		case 1:
+			drawRegisterUser();
+			break;
+
+		case 2:
+			drawRegisterAdmin();
+			break;
+
+		case 3:
+			drawRegisterManager();
+			break;
+		}
+	}
 
 }
 
