@@ -1,6 +1,10 @@
 #include "../include/loginRgister.h"
 #include "../include/users.h"
+#include "users.cpp"
 #include<fstream>
+#include<string>
+
+std::fstream accounts;
 
 void drawHomePage()
 {
@@ -71,6 +75,11 @@ void drawRegisterUser()
 {
 	std::cout << "---REGISTER---" << std::endl;
 	std::cout << "Email: ";
+	accounts.open("../assets/accounts.txt", std::ios::app);
+	std::cin.ignore();
+	std::getline(accounts, user.email);
+	accounts.close();
+
 	std::cout << std::endl;
 	std::cout << "Username: ";
 	std::cout << std::endl;

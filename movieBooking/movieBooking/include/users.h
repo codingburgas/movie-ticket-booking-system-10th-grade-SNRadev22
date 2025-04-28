@@ -8,3 +8,7 @@ struct User
 	std::string password;
 	enum rank {USER, ADMIN, MANAGER};
 };
+
+User user;
+
+void addToFile(std::fstream file, std::string toAdd);
