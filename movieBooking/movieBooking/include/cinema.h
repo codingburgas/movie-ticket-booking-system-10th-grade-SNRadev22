@@ -7,4 +7,5 @@ struct Cinema
 	std::string name;
 	std::string city;
 	std::string location;
+	std::string id;
 };

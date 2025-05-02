@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include <ios>
 
 struct User
 {
@@ -9,6 +10,6 @@ struct User
 	enum rank {USER, ADMIN, MANAGER};
 };
 
-User user;
+extern User user;
 
-void addToFile(std::fstream file, std::string toAdd);
+void addToFile(std::fstream& file, const std::string& fileName, std::ios_base::openmode mode, std::string& input);

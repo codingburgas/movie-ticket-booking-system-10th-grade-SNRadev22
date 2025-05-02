@@ -3,10 +3,20 @@
 #include<string>
 #include <iostream>
 
-void addToFile(std::fstream file, std::string fileName, std::ios_base::openmode mode)
+User user;
+
+void addToFile(std::fstream& file, const std::string& fileName, std::ios_base::openmode mode, std::string& input)
 {
 	file.open(fileName, mode);
-	std::cin.ignore();
-	std::getline(file, user.email);
-	file.close();
+	if (!file)
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return;
+	}
+	else
+	{
+		std::cin.ignore();
+		std::getline(std::cin, input);
+		file << input << std::endl;
+	}
 }
