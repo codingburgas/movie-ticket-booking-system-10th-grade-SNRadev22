@@ -9,3 +9,5 @@ struct Cinema
 	std::string location;
 	std::string id;
 };
+
+extern Cinema cinema;

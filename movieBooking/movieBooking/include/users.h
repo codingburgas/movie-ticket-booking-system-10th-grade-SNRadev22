@@ -8,6 +8,7 @@ struct User
 	std::string username;
 	std::string password;
 	enum rank {USER, ADMIN, MANAGER};
+	rank userRank;
 };
 
 extern User user;

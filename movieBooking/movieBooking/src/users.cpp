@@ -15,8 +15,8 @@ void addToFile(std::fstream& file, const std::string& fileName, std::ios_base::o
 	}
 	else
 	{
-		std::cin.ignore();
 		std::getline(std::cin, input);
 		file << input << std::endl;
+		file.close();
 	}
 }
