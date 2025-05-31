@@ -13,4 +13,7 @@ struct User
 
 extern User user;
 
-void addToFile(std::fstream& file, const std::string& fileName, std::ios_base::openmode mode, std::string& input);
+std::string getUserInput();
+
+bool exists(const std::string fileName, std::string input);
+void addToFile(const std::string& fileName, std::ios_base::openmode mode, std::string& input);
