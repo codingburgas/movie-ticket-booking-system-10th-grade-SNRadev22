@@ -62,4 +62,34 @@ void addToFile(const std::string& fileName, std::ios_base::openmode mode, std::s
 		file << input << std::endl;
 		file.close();
 	}
+
+}
+
+bool validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind)
+{
+	std::ifstream file;
+	file.open(fileName);
+	if (!file)
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return false;
+	}
+	else
+	{
+		std::string username, password;
+		while (std::getline(file, username))
+		{
+			if (username == usernameToFind)
+			{
+				std::getline(file, password);
+				if (password == passwordToFind)
+				{
+					file.close();
+					return true;
+				}
+			}
+		}
+		file.close();
+		return false;
+	}
 }

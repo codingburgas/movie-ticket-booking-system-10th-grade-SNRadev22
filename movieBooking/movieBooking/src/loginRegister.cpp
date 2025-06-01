@@ -35,9 +35,25 @@ void drawHomePage()
 void drawLoginPage()
 {
 	std::cout << "---LOGIN---" << std::endl;
-	std::cout << "Username: ";
-	std::cout << std::endl;
-	std::cout << "Password: ";
+
+	while (true)
+	{
+		std::cout << "Username: ";
+		std::cin >> user.username;
+		std::cout << std::endl;
+		std::cout << "Password: ";
+		std::cin >> user.password;
+
+		if (!validAccount("assets/accounts.txt", user.username, user.password))
+		{
+			std::cerr << "Invalid username or password." << std::endl;
+		}
+		else
+		{
+			std::cout << "Login successful!" << std::endl;
+			break;
+		}
+	}
 }
 
 void drawRegisterPage()
@@ -88,16 +104,19 @@ void drawRegisterUser()
 		}
 	}
 
-	std::cout << "Username: " << std::endl;
-	user.username = getUserInput();
-	if (exists("assets/accounts.txt", user.username))
+	while (true)
 	{
-		std::cerr << "Username already exists." << std::endl;
-		return;
-	}
-	else
-	{
-		addToFile("assets/accounts.txt", std::ios::app, user.username);
+		std::cout << "Username: " << std::endl;
+		user.username = getUserInput();
+		if (exists("assets/accounts.txt", user.username))
+		{
+			std::cerr << "Username already exists." << std::endl;
+		}
+		else
+		{
+			addToFile("assets/accounts.txt", std::ios::app, user.username);
+			break;
+		}
 	}
 	std::cout << "Password: " << std::endl;
 	user.password = getUserInput();
