@@ -16,5 +16,5 @@ extern User user;
 std::string getUserInput();
 
 bool exists(const std::string fileName, std::string input);
-void addToFile(const std::string& fileName, std::ios_base::openmode mode, std::string& input);
+void addToFile(const std::string& fileName, std::ios_base::openmode mode, const std::string& input);
 bool validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind);

@@ -1,4 +1,5 @@
 #include "../include/users.h"
+#include "../include/Utility.h"
 #include <fstream>
 #include<string>
 #include <iostream>
@@ -48,7 +49,7 @@ bool exists(const std::string fileName, std::string input)
 	}
 }
 
-void addToFile(const std::string& fileName, std::ios_base::openmode mode, std::string& input)
+void addToFile(const std::string& fileName, std::ios_base::openmode mode, const std::string& input)
 {
 	std::ofstream file;
 	file.open(fileName, mode);
@@ -76,7 +77,7 @@ bool validAccount(const std::string& fileName, std::string usernameToFind, std::
 	}
 	else
 	{
-		std::string username, password;
+		std::string username, password, rankStr;
 		while (std::getline(file, username))
 		{
 			if (username == usernameToFind)
@@ -84,6 +85,8 @@ bool validAccount(const std::string& fileName, std::string usernameToFind, std::
 				std::getline(file, password);
 				if (password == passwordToFind)
 				{
+					std::getline(file, rankStr);
+					setRank(rankStr);
 					file.close();
 					return true;
 				}

@@ -123,6 +123,7 @@ void drawRegisterUser()
 	addToFile("assets/accounts.txt", std::ios::app, user.password);
 
 	user.userRank = User::USER;
+	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
 }
 
 void drawRegisterAdmin()
