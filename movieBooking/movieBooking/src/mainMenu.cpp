@@ -1,4 +1,21 @@
 #include "../include/mainMenu.h"
+#include "../include/users.h"
+
+void selectMainMenu()
+{
+	switch (user.userRank)
+	{
+	case User::USER:
+		mainMenuUser();
+		break;
+	case User::ADMIN:
+		mainMenuAdmin();
+		break;
+	case User::MANAGER:
+		mainMenuManager();
+		break;
+	}
+}
 
 void mainMenuUser()
 {
@@ -23,7 +40,7 @@ void mainMenuUser()
 			break;
 
 		case 3:
-			break;
+			exit(0);
 		}
 	}
 }
@@ -51,6 +68,44 @@ void mainMenuAdmin()
 			break;
 
 		case 3:
+			exit(0);
+			break;
+		}
+	}
+}
+
+void mainMenuManager()
+{
+	int choice;
+	while (true)
+	{
+		std::cout << "---CINEMABOOKING---" << std::endl;
+		std::cout << "1. Add offers" << std::endl;
+		std::cout << "2. Edit offers" << std::endl;
+		std::cout << "3. Add cinema" << std::endl;
+		std::cout << "4. Edit cinema" << std::endl;
+		std::cout << "5.Exit" << std::endl;
+		std::cout << "What would you like to do today? ";
+		std::cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+
+			break;
+
+		case 2:
+
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			exit(0);
 			break;
 		}
 	}

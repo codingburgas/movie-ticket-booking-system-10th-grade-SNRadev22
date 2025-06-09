@@ -1,6 +1,7 @@
 #include "../include/loginRgister.h"
 #include "../include/cinema.h"
 #include "../include/users.h"
+#include "../include/mainMenu.h"
 #include<fstream>
 #include<string>
 
@@ -27,6 +28,7 @@ void drawHomePage()
 			break;
 
 		case 3:
+			exit(3);
 			break;
 		}
 	}
@@ -54,6 +56,7 @@ void drawLoginPage()
 			break;
 		}
 	}
+	selectMainMenu();
 }
 
 void drawRegisterPage()
@@ -124,6 +127,8 @@ void drawRegisterUser()
 
 	user.userRank = User::USER;
 	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
+
+	selectMainMenu();
 }
 
 void drawRegisterAdmin()
@@ -168,6 +173,9 @@ void drawRegisterAdmin()
 	addToFile("assets/accounts.txt", std::ios::app, user.password);
 
 	user.userRank = User::ADMIN;
+	addToFile("assets/accounts.txt", std::ios::app, std::string("ADMIN"));
+
+	selectMainMenu();
 }
 
 void drawRegisterManager()
@@ -243,4 +251,7 @@ void drawRegisterManager()
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.location);
 
 	user.userRank = User::MANAGER;
+	addToFile("assets/accounts.txt", std::ios::app, std::string("MANAGER"));
+
+	selectMainMenu();
 }
