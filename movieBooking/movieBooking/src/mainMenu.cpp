@@ -3,15 +3,15 @@
 
 void selectMainMenu()
 {
-	switch (user.userRank)
+	switch (user.getRank())
 	{
-	case User::USER:
+	case USER:
 		mainMenuUser();
 		break;
-	case User::ADMIN:
+	case ADMIN:
 		mainMenuAdmin();
 		break;
-	case User::MANAGER:
+	case MANAGER:
 		mainMenuManager();
 		break;
 	}

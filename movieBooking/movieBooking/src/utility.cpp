@@ -1,20 +1,61 @@
 #include "../include/Utility.h"
 
-void setRank(std::string rankStr)
+std::string getUserInput()
 {
-	if (rankStr == "USER")
+	std::string userInput;
+	while (true)
 	{
-		user.userRank = User::USER;
-		std::cout << "User" << std::endl;
+		std::getline(std::cin, userInput);
+		if (userInput.empty())
+		{
+			std::cerr << "Input cannot be empty." << std::endl;
+		}
+		else
+		{
+			return userInput;
+		}
 	}
-	else if (rankStr == "ADMIN")
+}
+
+bool exists(const std::string fileName, std::string input)
+{
+	std::ifstream file;
+	std::string toCheck;
+	file.open(fileName);
+	if (!file)
 	{
-		user.userRank = User::ADMIN;
-		std::cout << "Admin" << std::endl;
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		file.close();
+		return false;
 	}
-	else if (rankStr == "MANAGER")
+	else
 	{
-		user.userRank = User::MANAGER;
-		std::cout << "Manager" << std::endl;
+		while (std::getline(file, toCheck))
+		{
+			if (toCheck == input)
+			{
+				file.close();
+				return true;
+			}
+		}
+		file.close();
+		return false;
 	}
+}
+
+void addToFile(const std::string& fileName, std::ios_base::openmode mode, const std::string& input)
+{
+	std::ofstream file;
+	file.open(fileName, mode);
+	if (!file)
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return;
+	}
+	else
+	{
+		file << input << std::endl;
+		file.close();
+	}
+
 }

@@ -2,8 +2,11 @@
 #include "../include/cinema.h"
 #include "../include/users.h"
 #include "../include/mainMenu.h"
+#include "../include/Utility.h"
 #include<fstream>
 #include<string>
+
+User user;
 
 void drawHomePage()
 {
@@ -36,17 +39,21 @@ void drawHomePage()
 
 void drawLoginPage()
 {
+	std::string username;
+	std::string password;
 	std::cout << "---LOGIN---" << std::endl;
 
 	while (true)
 	{
 		std::cout << "Username: ";
-		std::cin >> user.username;
+		std::cin >> username;
+		user.setUsername(username);
 		std::cout << std::endl;
 		std::cout << "Password: ";
-		std::cin >> user.password;
+		std::cin >> password;
+		user.setPassword(password);
 
-		if (!validAccount("assets/accounts.txt", user.username, user.password))
+		if (!user.validAccount("assets/accounts.txt", user.getUsername(), user.getPassword()))
 		{
 			std::cerr << "Invalid username or password." << std::endl;
 		}
@@ -95,14 +102,15 @@ void drawRegisterUser()
 	while (true)
 	{
 		std::cout << "Email: " << std::endl;
-		user.email = getUserInput();
-		if (exists("assets/accounts.txt", user.email))
+		std::string email = getUserInput();
+		user.setEmail(email);
+		if (exists("assets/accounts.txt", user.getEmail()))
 		{
 			std::cerr << "Email already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.email);
+			addToFile("assets/accounts.txt", std::ios::app, user.getEmail());
 			break;
 		}
 	}
@@ -110,22 +118,24 @@ void drawRegisterUser()
 	while (true)
 	{
 		std::cout << "Username: " << std::endl;
-		user.username = getUserInput();
-		if (exists("assets/accounts.txt", user.username))
+		std::string username = getUserInput();
+		user.setUsername(username);
+		if (exists("assets/accounts.txt", user.getUsername()))
 		{
 			std::cerr << "Username already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.username);
+			addToFile("assets/accounts.txt", std::ios::app, user.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
-	user.password = getUserInput();
-	addToFile("assets/accounts.txt", std::ios::app, user.password);
+	std::string password = getUserInput();
+	user.setPassword(password);
+	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
-	user.userRank = User::USER;
+	user.setRank("USER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
 
 	selectMainMenu();
@@ -139,14 +149,15 @@ void drawRegisterAdmin()
 	while (true)
 	{
 		std::cout << "Email: " << std::endl;
-		user.email = getUserInput();
-		if (exists("assets/accounts.txt", user.email))
+		std::string email = getUserInput();
+		user.setEmail(email);
+		if (exists("assets/accounts.txt", user.getEmail()))
 		{
 			std::cerr << "Email already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.email);
+			addToFile("assets/accounts.txt", std::ios::app, user.getEmail());
 			break;
 		}
 	}
@@ -154,25 +165,27 @@ void drawRegisterAdmin()
 	while (true)
 	{
 		std::cout << "Username: " << std::endl;
-		user.username = getUserInput();
-		if (exists("assets/accounts.txt", user.username))
+		std::string username = getUserInput();
+		user.setUsername(username);
+		if (exists("assets/accounts.txt", user.getUsername()))
 		{
 			std::cerr << "Username already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.username);
+			addToFile("assets/accounts.txt", std::ios::app, user.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
-	user.password = getUserInput();
-	addToFile("assets/accounts.txt", std::ios::app, user.password);
+	std::string password = getUserInput();
+	user.setPassword(password);
+	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
 	std::cout << "Cinema id: " << std::endl;
-	addToFile("assets/accounts.txt", std::ios::app, user.password);
-
-	user.userRank = User::ADMIN;
+	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
+	
+	user.setRank("ADMIN");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("ADMIN"));
 
 	selectMainMenu();
@@ -185,14 +198,15 @@ void drawRegisterManager()
 	while (true)
 	{
 		std::cout << "Email: " << std::endl;
-		user.email = getUserInput();
-		if (exists("assets/accounts.txt", user.email))
+		std::string email = getUserInput();
+		user.setEmail(email);
+		if (exists("assets/accounts.txt", user.getEmail()))
 		{
 			std::cerr << "Email already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.email);
+			addToFile("assets/accounts.txt", std::ios::app, user.getEmail());
 			break;
 		}
 	}
@@ -200,20 +214,22 @@ void drawRegisterManager()
 	while (true)
 	{
 		std::cout << "Username: " << std::endl;
-		user.username = getUserInput();
-		if (exists("assets/accounts.txt", user.username))
+		std::string username = getUserInput();
+		user.setUsername(username);
+		if (exists("assets/accounts.txt", user.getUsername()))
 		{
 			std::cerr << "Username already exists." << std::endl;
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, user.username);
+			addToFile("assets/accounts.txt", std::ios::app, user.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
-	user.password = getUserInput();
-	addToFile("assets/accounts.txt", std::ios::app, user.password);
+	std::string password = getUserInput();
+	user.setPassword(password);
+	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
 	std::cout << "Cinema id: " << std::endl;
 	cinema.id = getUserInput();
@@ -250,7 +266,7 @@ void drawRegisterManager()
 	cinema.location = getUserInput();
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.location);
 
-	user.userRank = User::MANAGER;
+	user.setRank("MANAGER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("MANAGER"));
 
 	selectMainMenu();
