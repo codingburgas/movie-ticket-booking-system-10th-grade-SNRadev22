@@ -232,39 +232,43 @@ void drawRegisterManager()
 	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
 	std::cout << "Cinema id: " << std::endl;
-	cinema.id = getUserInput();
-	if (exists("assets/cinemas.txt", cinema.id))
+	std::string cinemaId = getUserInput();
+	cinema.setId(cinemaId);
+	if (exists("assets/cinemas.txt", cinema.getId()))
 	{
 		std::cerr << "Cinema id already exists." << std::endl;
 	}
 	else
 	{
-		addToFile("assets/cinemas.txt", std::ios::app, cinema.id);
+		addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
 	}
 
 	while (true)
 	{
 		std::cout << "Cinema name: " << std::endl;
-		cinema.name = getUserInput();
-		if (exists("assets/cinemas.txt", cinema.name))
+		std::string cinemaName = getUserInput();
+		cinema.setName(cinemaName);
+		if (exists("assets/cinemas.txt", cinema.getName()))
 		{
 			std::cerr << "Cinema name already exists." << std::endl;
 			return;
 		}
 		else
 		{
-			addToFile("assets/cinemas.txt", std::ios::app, cinema.name);
+			addToFile("assets/cinemas.txt", std::ios::app, cinema.getName());
 			break;
 		}
 	}
 
 	std::cout << "Cinema city: " << std::endl;
-	cinema.city = getUserInput();
-	addToFile("assets/cinemas.txt", std::ios::app, cinema.city);
+	std::string cinemaCity = getUserInput();
+	cinema.setCity(cinemaCity);
+	addToFile("assets/cinemas.txt", std::ios::app, cinema.getCity());
 
 	std::cout << "Cinema location: " << std::endl;
-	cinema.location = getUserInput();
-	addToFile("assets/cinemas.txt", std::ios::app, cinema.location);
+	std::string cinemaLocation = getUserInput();
+	cinema.setLocation(cinemaLocation);
+	addToFile("assets/cinemas.txt", std::ios::app, cinema.getLocation());
 
 	user.setRank("MANAGER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("MANAGER"));
