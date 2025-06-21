@@ -19,6 +19,10 @@ std::string Cinema::getId()
 {
 	return id;
 }
+std::string Cinema::getOwner()
+{
+	return owner;
+}
 
 void Cinema::setName(std::string newName)
 {
@@ -35,4 +39,8 @@ void Cinema::setLocation(std::string newLocation)
 void Cinema::setId(std::string newID)
 {
 	id = newID;
+}
+void Cinema::setOwner(std::string newOwner)
+{
+	owner = newOwner;
 }

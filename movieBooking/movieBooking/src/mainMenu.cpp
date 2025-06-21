@@ -109,7 +109,7 @@ void mainMenuManager()
 			break;
 
 		case 5:
-
+			addCinema();
 			break;
 		case 6:
 

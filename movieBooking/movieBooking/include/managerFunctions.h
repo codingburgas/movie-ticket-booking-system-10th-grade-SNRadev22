@@ -6,3 +6,4 @@
 #include <iostream>
 
 void addHalls();
+void addCinema();
