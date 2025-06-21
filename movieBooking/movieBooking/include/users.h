@@ -5,7 +5,6 @@ enum rank { USER, ADMIN, MANAGER };
 class User
 {
 public:
-	std::string getUserInput();
 	std::string getEmail();
 	std::string getUsername();
 	std::string getPassword();

@@ -129,8 +129,10 @@
   <ItemGroup>
     <ClCompile Include="movieBooking.cpp" />
     <ClCompile Include="src\cinema.cpp" />
+    <ClCompile Include="src\hall.cpp" />
     <ClCompile Include="src\loginRegister.cpp" />
     <ClCompile Include="src\mainMenu.cpp" />
+    <ClCompile Include="src\managerFunctions.cpp" />
     <ClCompile Include="src\users.cpp" />
     <ClCompile Include="src\utility.cpp" />
   </ItemGroup>
@@ -140,6 +142,7 @@
     <ClInclude Include="include\hall.h" />
     <ClInclude Include="include\loginRgister.h" />
     <ClInclude Include="include\mainMenu.h" />
+    <ClInclude Include="include\managerFunctions.h" />
     <ClInclude Include="include\movie.h" />
     <ClInclude Include="include\users.h" />
     <ClInclude Include="include\Utility.h" />
