@@ -1,5 +1,5 @@
 #include "../include/mainMenu.h"
-#include "../include/users.h"
+#include "../include/baseUser.h"
 #include "../include/managerFunctions.h"
 
 void selectMainMenu()
@@ -102,14 +102,14 @@ void mainMenuManager()
 			break;
 
 		case 3:
-			addHalls();
+			manager.addHalls();
 			break;
 
 		case 4:
 			break;
 
 		case 5:
-			addCinema();
+			manager.addCinema();
 			break;
 		case 6:
 

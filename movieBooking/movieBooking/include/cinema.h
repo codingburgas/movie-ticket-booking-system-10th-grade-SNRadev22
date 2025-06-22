@@ -1,6 +1,8 @@
 #pragma once
 #include<string>
 #include<vector>
+#include<iostream>
+#include<fstream>
 
 class Cinema
 {
@@ -16,6 +18,9 @@ public:
 	void setLocation(std::string newLocation);
 	void setId(std::string newID);
 	void setOwner(std::string newOwner);
+
+	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
+
 
 private:
 	std::string name;

@@ -44,3 +44,32 @@ void Cinema::setOwner(std::string newOwner)
 {
 	owner = newOwner;
 }
+
+bool Cinema::validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind)
+{
+	std::ifstream file;
+	file.open(fileName);
+	if (!file)
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return false;
+	}
+	else
+	{
+		std::string id, name;
+		while (std::getline(file, id))
+		{
+			if (id == idToFind)
+			{
+				std::getline(file, name);
+				if (name == nameToFind)
+				{
+					file.close();
+					return true;
+				}
+			}
+		}
+		file.close();
+		return false;
+	}
+}

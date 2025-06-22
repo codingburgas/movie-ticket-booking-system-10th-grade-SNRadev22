@@ -1,8 +1,10 @@
 #pragma once
 #include<string>
 #include <ios>
+#include<vector>
+
 enum rank { USER, ADMIN, MANAGER };
-class User
+class BaseUser
 {
 public:
 	std::string getEmail();
@@ -24,4 +26,4 @@ private:
 	rank userRank;
 };
 
-extern User user;
+extern BaseUser user;

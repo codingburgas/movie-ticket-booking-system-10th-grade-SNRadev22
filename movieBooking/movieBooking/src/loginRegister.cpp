@@ -1,12 +1,13 @@
 #include "../include/loginRgister.h"
 #include "../include/cinema.h"
-#include "../include/users.h"
+#include "../include/baseUser.h"
 #include "../include/mainMenu.h"
 #include "../include/Utility.h"
+#include "../include/managerFunctions.h"
 #include<fstream>
 #include<string>
 
-User user;
+BaseUser user;
 
 void drawHomePage()
 {
@@ -182,9 +183,28 @@ void drawRegisterAdmin()
 	user.setPassword(password);
 	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
-	std::cout << "Cinema id: " << std::endl;
-	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
-	
+	while (true)
+	{
+		std::cout << "Cinema's id: ";
+		std::string id;
+		std::cin >> id;
+		cinema.setId(id);
+		std::cout << std::endl;
+
+		std::cout << "Cinema's name: ";
+		std::string name;
+		getline(std::cin, name);
+		cinema.setName(name);
+		if (!cinema.validCinema("assets/cinemas.txt", cinema.getId(), cinema.getName()))
+		{
+			std::cerr << "Invalid cinema." << std::endl;
+		}
+		else
+		{
+			std::cout << "Login successful!" << std::endl;
+			break;
+		}
+	}
 	user.setRank("ADMIN");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("ADMIN"));
 
@@ -231,7 +251,7 @@ void drawRegisterManager()
 	user.setPassword(password);
 	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
 
-	addCinema();
+	manager.addCinema();
 
 	user.setRank("MANAGER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("MANAGER"));

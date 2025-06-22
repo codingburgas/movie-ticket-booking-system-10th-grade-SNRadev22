@@ -1,8 +1,9 @@
 #include "../include/managerFunctions.h"
 
 Hall hall;
+Manager manager;
 
-void addHalls()
+void Manager::addHalls()
 {
 	std::cout << "---ADD HALLS---" << std::endl;
 	std::cin.ignore();
@@ -18,7 +19,7 @@ void addHalls()
 	addToFile("assets/halls.txt", std::ios::app, hall.getLocation());
 }
 
-void addCinema()
+void Manager::addCinema()
 {
 	std::cout << "---ADD CINEMA---" << std::endl;
 
@@ -55,6 +56,10 @@ void addCinema()
 	std::string cinemaCity = getUserInput();
 	cinema.setCity(cinemaCity);
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getCity());
+	if (!exists("assets/cities.txt", cinema.getCity()))
+	{
+		addToFile("assets/cities.txt", std::ios::app, cinema.getCity());
+	}
 
 	std::cout << "Cinema location: " << std::endl;
 	std::string cinemaLocation = getUserInput();
@@ -63,4 +68,6 @@ void addCinema()
 
 	cinema.setOwner(user.getUsername());
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getOwner());
+
+	manager.ownedCinemas.push_back(cinema);
 }

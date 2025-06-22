@@ -27,7 +27,7 @@
     <ClCompile Include="src\utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\users.cpp">
+    <ClCompile Include="src\baseUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cinema.cpp">
@@ -37,6 +37,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\hall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +65,13 @@
     <ClInclude Include="include\mainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\users.h">
+    <ClInclude Include="include\baseUser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\managerFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

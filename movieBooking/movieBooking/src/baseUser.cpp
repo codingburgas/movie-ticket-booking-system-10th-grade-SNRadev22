@@ -1,39 +1,39 @@
-#include "../include/users.h"
+#include "../include/baseUser.h"
 #include "../include/Utility.h"
 #include <fstream>
 #include<string>
 #include <iostream>
 
-std::string User::getEmail()
+std::string BaseUser::getEmail()
 {
 	return email;
 }
-std::string User::getUsername()
+std::string BaseUser::getUsername()
 {
 	return username;
 }
-std::string User::getPassword()
+std::string BaseUser::getPassword()
 {
 	return password;
 }
-rank User::getRank()
+rank BaseUser::getRank()
 {
 	return userRank;
 }
 
-void User::setEmail(std::string newEmail)
+void BaseUser::setEmail(std::string newEmail)
 {
 	email = newEmail;
 }
-void User::setUsername(std::string newUsername)
+void BaseUser::setUsername(std::string newUsername)
 {
 	username = newUsername;
 }
-void User::setPassword(std::string newPassword)
+void BaseUser::setPassword(std::string newPassword)
 {
 	password = newPassword;
 }
-void User::setRank(std::string rankStr)
+void BaseUser::setRank(std::string rankStr)
 {
 	if (rankStr == "USER")
 	{
@@ -52,7 +52,7 @@ void User::setRank(std::string rankStr)
 	}
 }
 
-bool User::validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind)
+bool BaseUser::validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind)
 {
 	std::ifstream file;
 	file.open(fileName);
