@@ -249,7 +249,7 @@ void drawRegisterManager()
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
-	addToFile("assets/accounts.txt", std::ios::app, user.getPassword());
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
 	manager.addCinema();
 

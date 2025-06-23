@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="movieBooking.cpp" />
     <ClCompile Include="src\cinema.cpp" />
+    <ClCompile Include="src\city.cpp" />
     <ClCompile Include="src\hall.cpp" />
     <ClCompile Include="src\loginRegister.cpp" />
     <ClCompile Include="src\mainMenu.cpp" />

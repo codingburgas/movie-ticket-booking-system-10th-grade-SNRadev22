@@ -3,7 +3,7 @@
 
 Hall hall;
 Manager manager;
-City ccurrentCity;
+City currentCity;
 
 void Manager::addHalls()
 {
@@ -69,12 +69,14 @@ void Manager::addCinema()
 		addToFile("assets/cities.txt", std::ios::app, cinema.getCity());
 		currentCity.setName(cinemaCity);
 		currentCity.addCinema(cinema.getId());
-		cities.push_back(ccurrentCity);
+		currentCity.addCinemaToFile("assets/cities.txt", cinemaCity, cinema.getId());
+		cities.push_back(currentCity);
 	}
 	else
 	{
-		ccurrentCity = ccurrentCity.findCity(cinemaCity);
-		ccurrentCity.addCinema(cinema.getId());
+		currentCity = currentCity.findCity(cinemaCity);
+		currentCity.addCinema(cinema.getId());
+		currentCity.addCinemaToFile("assets/cities.txt", cinemaCity, cinema.getId());
 	}
 
 	std::cout << "Cinema location: " << std::endl;

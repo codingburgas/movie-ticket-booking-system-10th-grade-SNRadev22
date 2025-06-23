@@ -1,10 +1,15 @@
 333
-CinemaCity
-Burgas
-Mall Gallery
-SNR222
+CCC
+Nurgas
+MG
+SNR
 222
 CC
 Plovdiv
-Mall Plaza
+MP
+SNR
+111
+MC
+Burgas
+MCC
 SNR
