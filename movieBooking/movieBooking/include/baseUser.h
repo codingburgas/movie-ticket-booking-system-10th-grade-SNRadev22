@@ -26,4 +26,4 @@ private:
 	rank userRank;
 };
 
-extern BaseUser user;
+extern BaseUser baseUser;

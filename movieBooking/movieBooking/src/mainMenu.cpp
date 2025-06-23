@@ -1,10 +1,11 @@
 #include "../include/mainMenu.h"
 #include "../include/baseUser.h"
 #include "../include/managerFunctions.h"
+#include "../include/user.h"
 
 void selectMainMenu()
 {
-	switch (user.getRank())
+	switch (baseUser.getRank())
 	{
 	case USER:
 		mainMenuUser();
@@ -33,7 +34,7 @@ void mainMenuUser()
 		switch (choice)
 		{
 		case 1:
-
+			user.browseOffers();
 			break;
 
 		case 2:

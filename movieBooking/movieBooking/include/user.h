@@ -8,7 +8,7 @@ public:
 	void browseOffers();
 
 private:
-	std::vector<Cinema> ownedCinemas;
+
 };
 
-extern User manager;
+extern User user;

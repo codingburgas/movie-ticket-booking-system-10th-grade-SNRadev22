@@ -23,16 +23,20 @@ void Manager::addCinema()
 {
 	std::cout << "---ADD CINEMA---" << std::endl;
 
-	std::cout << "Cinema id: " << std::endl;
-	std::string cinemaId = getUserInput();
-	cinema.setId(cinemaId);
-	if (exists("assets/cinemas.txt", cinema.getId()))
+	while (true)
 	{
-		std::cerr << "Cinema id already exists." << std::endl;
-	}
-	else
-	{
-		addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
+		std::cout << "Cinema id: " << std::endl;
+		std::string cinemaId = getUserInput();
+		cinema.setId(cinemaId);
+		if (exists("assets/cinemas.txt", cinema.getId()))
+		{
+			std::cerr << "Cinema id already exists." << std::endl;
+		}
+		else
+		{
+			addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
+			break;
+		}
 	}
 
 	while (true)
@@ -66,7 +70,7 @@ void Manager::addCinema()
 	cinema.setLocation(cinemaLocation);
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getLocation());
 
-	cinema.setOwner(user.getUsername());
+	cinema.setOwner(baseUser.getUsername());
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getOwner());
 
 	manager.ownedCinemas.push_back(cinema);

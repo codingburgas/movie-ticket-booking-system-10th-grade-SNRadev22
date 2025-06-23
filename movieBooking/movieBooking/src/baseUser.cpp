@@ -4,6 +4,8 @@
 #include<string>
 #include <iostream>
 
+BaseUser baseUser;
+
 std::string BaseUser::getEmail()
 {
 	return email;
@@ -37,17 +39,17 @@ void BaseUser::setRank(std::string rankStr)
 {
 	if (rankStr == "USER")
 	{
-		user.userRank = USER;
+		baseUser.userRank = USER;
 		std::cout << "User" << std::endl;
 	}
 	else if (rankStr == "ADMIN")
 	{
-		user.userRank = ADMIN;
+		baseUser.userRank = ADMIN;
 		std::cout << "Admin" << std::endl;
 	}
 	else if (rankStr == "MANAGER")
 	{
-		user.userRank = MANAGER;
+		baseUser.userRank = MANAGER;
 		std::cout << "Manager" << std::endl;
 	}
 }
