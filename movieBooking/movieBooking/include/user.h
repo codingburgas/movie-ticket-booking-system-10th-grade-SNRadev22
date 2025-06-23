@@ -6,6 +6,7 @@ class User : BaseUser
 {
 public:
 	void browseOffers();
+	void browseCinemas();
 
 private:
 

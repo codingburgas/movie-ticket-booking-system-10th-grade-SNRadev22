@@ -37,3 +37,35 @@ void User::browseOffers()
 		}
 	}
 }
+
+void User::browseCinemas()
+{
+	std::fstream file;
+	std::string cinema;
+	file.open("assets/cinemas.txt");
+	if (!file.is_open())
+	{
+		std::cerr << "Error while opening file!" << std::endl;
+	}
+	else
+	{
+		while (getline(file, cinema))
+		{
+			std::cout << cinema << std::endl;
+		}
+		std::string chosenCinema;
+		std::cin.ignore();
+		while (true)
+		{
+			chosenCinema = getUserInput();
+			if (exists("assets/cinemas.txt", chosenCinema))
+			{
+				break;
+			}
+			else
+			{
+				std::cout << "There are no cinemas with this name!" << std::endl;
+			}
+		}
+	}
+}

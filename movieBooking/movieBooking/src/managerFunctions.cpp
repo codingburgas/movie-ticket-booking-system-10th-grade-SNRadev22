@@ -1,7 +1,9 @@
 #include "../include/managerFunctions.h"
+#include "../include/city.h"
 
 Hall hall;
 Manager manager;
+City ccurrentCity;
 
 void Manager::addHalls()
 {
@@ -21,6 +23,8 @@ void Manager::addHalls()
 
 void Manager::addCinema()
 {
+	City currentCity;
+
 	std::cout << "---ADD CINEMA---" << std::endl;
 
 	while (true)
@@ -63,6 +67,14 @@ void Manager::addCinema()
 	if (!exists("assets/cities.txt", cinema.getCity()))
 	{
 		addToFile("assets/cities.txt", std::ios::app, cinema.getCity());
+		currentCity.setName(cinemaCity);
+		currentCity.addCinema(cinema.getId());
+		cities.push_back(ccurrentCity);
+	}
+	else
+	{
+		ccurrentCity = ccurrentCity.findCity(cinemaCity);
+		ccurrentCity.addCinema(cinema.getId());
 	}
 
 	std::cout << "Cinema location: " << std::endl;
