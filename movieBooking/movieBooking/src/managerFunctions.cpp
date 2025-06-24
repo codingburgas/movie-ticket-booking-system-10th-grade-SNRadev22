@@ -3,7 +3,6 @@
 
 Hall hall;
 Manager manager;
-City currentCity;
 
 void Manager::addHalls()
 {

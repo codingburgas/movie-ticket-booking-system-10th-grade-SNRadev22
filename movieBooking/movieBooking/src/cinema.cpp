@@ -73,3 +73,33 @@ bool Cinema::validCinema(const std::string& fileName, std::string idToFind, std:
 		return false;
 	}
 }
+
+void Cinema::displayCinemas(const std::string& fileName, const std::vector<std::string>& cinemaIds)
+{
+	std::ifstream file(fileName);
+	if (!file.is_open())
+	{
+		std::cerr << "Error opening file!" << std::endl;
+		return;
+	}
+
+	std::string id, name, skip;
+	while (getline(file, id))
+	{
+		getline(file, name);
+		getline(file, skip);
+		getline(file, skip);
+		getline(file, skip);
+
+		for (const std::string& cinemaId : cinemaIds)
+		{
+			if (id == cinemaId)
+			{
+				std::cout << name << std::endl;
+				break;
+			}
+		}
+	}
+
+	file.close();
+}

@@ -3,6 +3,7 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
+#include "city.h"
 
 class Cinema
 {
@@ -20,6 +21,7 @@ public:
 	void setOwner(std::string newOwner);
 
 	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
+	void displayCinemas(const std::string& fileName, const std::vector<std::string>& cinemaIds);
 
 
 private:

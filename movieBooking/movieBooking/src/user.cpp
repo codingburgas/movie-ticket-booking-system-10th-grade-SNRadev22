@@ -3,6 +3,7 @@
 #include "../include/Utility.h"
 
 User user;
+City currentCity;
 
 void User::browseOffers()
 {
@@ -19,15 +20,19 @@ void User::browseOffers()
 		while (getline(file, city))
 		{
 			std::cout << city << std::endl;
+			getline(file, city);
 		}
 
-		std::string chosenCity;
+		std::string chosenCityName;
 		std::cin.ignore();
 		while (true)
 		{
-			chosenCity = getUserInput();
-			if (exists("assets/cities.txt", chosenCity))
+			chosenCityName = getUserInput();
+			if (exists("assets/cities.txt", chosenCityName))
 			{
+				currentCity = currentCity.findCity(chosenCityName);
+				browseCinemas(currentCity);
+				file.close();
 				break;
 			}
 			else
@@ -38,21 +43,10 @@ void User::browseOffers()
 	}
 }
 
-void User::browseCinemas()
+void User::browseCinemas(City city)
 {
-	std::fstream file;
-	std::string cinema;
-	file.open("assets/cinemas.txt");
-	if (!file.is_open())
-	{
-		std::cerr << "Error while opening file!" << std::endl;
-	}
-	else
-	{
-		while (getline(file, cinema))
-		{
-			std::cout << cinema << std::endl;
-		}
+		cinema.displayCinemas("assets/cinemas.txt", city.getCinemas());
+
 		std::string chosenCinema;
 		std::cin.ignore();
 		while (true)
@@ -68,4 +62,3 @@ void User::browseCinemas()
 			}
 		}
 	}
-}

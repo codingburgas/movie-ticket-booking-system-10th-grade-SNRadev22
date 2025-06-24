@@ -1,4 +1,5 @@
 #include "../include/city.h"
+#include <sstream>
 
 std::vector<City> cities;
 
@@ -52,6 +53,38 @@ void City::addCinemaToFile(const std::string fileName, std::string nameToFind, s
 
 		file.close();
 	}
+}
+
+void City::loadCities(const std::string fileName)
+{
+	std::fstream file(fileName, std::ios::in);
+	std::string line;
+	std::string id;
+
+	if (!file.is_open())
+	{
+		std::cerr << "Error while opening file!" << std::endl;
+		return;
+	}
+
+	while (getline(file, line))
+	{
+		City city;
+		city.setName(line);
+
+		if (getline(file, line))
+		{
+			std::istringstream iss(line);
+			while (iss >> id) 
+			{
+				city.addCinema(id);
+			}
+		}
+
+		cities.push_back(city);
+	}
+
+	file.close();
 }
 
 void City::addCinema(std::string cinemaId)

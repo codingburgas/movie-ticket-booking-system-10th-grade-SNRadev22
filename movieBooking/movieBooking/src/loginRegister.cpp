@@ -6,11 +6,14 @@
 #include "../include/managerFunctions.h"
 #include<fstream>
 #include<string>
+#include "../include/city.h"
 
 BaseUser user;
+City city;
 
 void drawHomePage()
 {
+	city.loadCities("assets/cities.txt");
 	int choice;
 	while (true)
 	{
@@ -133,10 +136,10 @@ void drawRegisterUser()
 	}
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
-	user.setPassword(password);
+	baseUser.setPassword(password);
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
-	user.setRank("USER");
+	baseUser.setRank("USER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
 
 	selectMainMenu();
@@ -180,7 +183,7 @@ void drawRegisterAdmin()
 	}
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
-	user.setPassword(password);
+	baseUser.setPassword(password);
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
 	while (true)

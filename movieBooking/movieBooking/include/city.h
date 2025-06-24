@@ -9,6 +9,7 @@ public:
 	City findCity(std::string nameToFind);
 	void addCinema(std::string cinemaId);
 	void addCinemaToFile(const std::string fileName, std::string nameToFind, std::string cinemaId);
+	void loadCities(const std::string fileName);
 
 	std::string getName();
 	std::vector<std::string> getCinemas();
