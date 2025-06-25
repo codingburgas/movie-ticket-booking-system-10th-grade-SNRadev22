@@ -1,0 +1,6 @@
+A1
+Floor1 Room 1
+25
+C1
+Floor 3
+16

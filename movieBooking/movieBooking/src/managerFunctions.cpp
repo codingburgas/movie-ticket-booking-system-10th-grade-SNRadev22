@@ -27,11 +27,24 @@ void Manager::addHalls()
 
 	if (manager.ownedCinemas.size() == 1)
 	{
-		
+		cinema.addHall(hall);
 	}
 	else
 	{
+		std::string chosenCinema;
 
+		displayCinemas();
+
+		std::cout << "Select cinema by ID to add hall: ";
+		std::cin >> chosenCinema;
+		for (Cinema cinema : ownedCinemas)
+		{
+			if (cinema.getId() == chosenCinema)
+			{
+				cinema.addHall(hall);
+				break;
+			}
+		}
 	}
 }
 
@@ -52,6 +65,7 @@ void Manager::addCinema()
 		}
 		else
 		{
+			currentCity.addCinemaToFile("assets/accounts.txt", manager.getEmail(), cinema.getId());
 			addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
 			break;
 		}
@@ -102,4 +116,41 @@ void Manager::addCinema()
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getOwner());
 
 	manager.ownedCinemas.push_back(cinema);
+}
+
+void Manager::loadCinemas(const std::string& fileName)
+{
+	std::ifstream file(fileName);
+	if (!file.is_open())
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return;
+	}
+	Cinema cinema;
+	std::string line;
+	while (std::getline(file, line))
+	{
+		cinema.setId(line);
+		std::getline(file, line);
+		cinema.setName(line);
+		std::getline(file, line);
+		cinema.setCity(line);
+		std::getline(file, line);
+		cinema.setLocation(line);
+		std::getline(file, line);
+		cinema.setOwner(line);
+		manager.ownedCinemas.push_back(cinema);
+	}
+	file.close();
+}
+
+void Manager::displayCinemas()
+{
+	for (Cinema cinema : ownedCinemas)
+	{
+		std::cout << "Cinema ID: " << cinema.getId() << std::endl;
+		std::cout << "Cinema Name: " << cinema.getName() << std::endl;
+		std::cout << "City: " << cinema.getCity() << std::endl;
+		std::cout << "Location: " << cinema.getLocation() << std::endl;
+	}
 }

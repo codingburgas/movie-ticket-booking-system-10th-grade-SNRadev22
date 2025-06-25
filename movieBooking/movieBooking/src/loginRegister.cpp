@@ -229,7 +229,6 @@ void drawRegisterManager()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
 			break;
 		}
 	}
@@ -245,16 +244,17 @@ void drawRegisterManager()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
-	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
 	manager.addCinema();
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
 	baseUser.setRank("MANAGER");
 	addToFile("assets/accounts.txt", std::ios::app, std::string("MANAGER"));

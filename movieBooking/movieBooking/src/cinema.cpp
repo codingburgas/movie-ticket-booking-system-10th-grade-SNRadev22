@@ -78,11 +78,15 @@ void Cinema::displayCinemas(std::vector<Cinema> cinemas)
 {
 	for (size_t i = 0; i < cinemas.size(); i++)
 	{
-		std::cout << "Cinema ID: " << cinemas[i].getId() << std::endl;
 		std::cout << "Cinema Name: " << cinemas[i].getName() << std::endl;
 		std::cout << "City: " << cinemas[i].getCity() << std::endl;
 		std::cout << "Location: " << cinemas[i].getLocation() << std::endl;
 		std::cout << "Owner: " << cinemas[i].getOwner() << std::endl;
 		std::cout << "------------------------" << std::endl;
 	}
+}
+
+void Cinema::addHall(Hall hall)
+{
+	halls.push_back(hall);
 }

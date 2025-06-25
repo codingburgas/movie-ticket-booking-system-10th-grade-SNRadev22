@@ -31,6 +31,7 @@ void City::addCinemaToFile(const std::string fileName, std::string nameToFind, s
 			lines.push_back(line);
 			if (line == nameToFind)
 			{
+				std::cout << "line found" << std::endl;
 				getline(file, line);
 				line += " " + cinemaId;
 				lines.push_back(line);

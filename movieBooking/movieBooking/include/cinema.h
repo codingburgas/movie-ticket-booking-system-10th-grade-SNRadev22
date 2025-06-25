@@ -22,6 +22,7 @@ public:
 
 	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
 	void displayCinemas(std::vector<Cinema> cinemas);
+	void addHall(Hall hall);
 
 
 private:
