@@ -17,3 +17,13 @@ void Hall::setLocation(std::string newLocation)
 {
 	location = newLocation;
 }
+
+int Hall::getNumberOfSeats()
+{
+	return numberOfSeats;
+}
+
+void Hall::setNumberOfSeats(int seats)
+{
+	numberOfSeats = seats;
+}

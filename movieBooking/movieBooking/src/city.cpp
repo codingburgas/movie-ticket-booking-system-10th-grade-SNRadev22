@@ -57,39 +57,72 @@ void City::addCinemaToFile(const std::string fileName, std::string nameToFind, s
 
 void City::loadCities(const std::string fileName)
 {
-	std::fstream file(fileName, std::ios::in);
-	std::string line;
-	std::string id;
-
-	if (!file.is_open())
+	std::ifstream cityFile(fileName);
+	if (!cityFile.is_open())
 	{
-		std::cerr << "Error while opening file!" << std::endl;
+		std::cerr << "Error while opening file: " << fileName << std::endl;
 		return;
 	}
 
-	while (getline(file, line))
+	std::ifstream cinemaFile("assets/cinemas.txt");
+	if (!cinemaFile.is_open())
 	{
-		City city;
-		city.setName(line);
+		std::cerr << "Error while opening file: assets/cinemas.txt" << std::endl;
+		return;
+	}
 
-		if (getline(file, line))
+	City currentCity;
+	std::string cityName;
+	while (getline(cityFile, cityName))
+	{
+		currentCity.setName(cityName);
+
+		std::string line;
+		if (getline(cityFile, line))  // The line of cinema IDs
 		{
 			std::istringstream iss(line);
-			while (iss >> id) 
+			std::string idToFind;
+
+			while (iss >> idToFind)
 			{
-				city.addCinema(id);
+				// Reset cinema file to the beginning
+				cinemaFile.clear();
+				cinemaFile.seekg(0);
+
+				std::string id, name, city, location, owner;
+				while (getline(cinemaFile, id))
+				{
+					getline(cinemaFile, name);
+					getline(cinemaFile, city);
+					getline(cinemaFile, location);
+					getline(cinemaFile, owner);
+
+					if (id == idToFind)
+					{
+						Cinema cinema;
+						cinema.setId(id);
+						cinema.setName(name);
+						cinema.setCity(city);
+						cinema.setLocation(location);
+						cinema.setOwner(owner);
+
+						currentCity.addCinema(cinema);
+						break;
+					}
+				}
 			}
 		}
 
-		cities.push_back(city);
+		cities.push_back(currentCity);
 	}
 
-	file.close();
+	cityFile.close();
+	cinemaFile.close();
 }
 
-void City::addCinema(std::string cinemaId)
+void City::addCinema(Cinema cinema)
 {
-	cinemas.push_back(cinemaId);
+	cinemas.push_back(cinema);
 }
 
 std::string City::getName()
@@ -97,7 +130,7 @@ std::string City::getName()
 	return name;
 }
 
-std::vector<std::string> City::getCinemas()
+std::vector<Cinema> City::getCinemas()
 {
 	return cinemas;
 }
@@ -107,7 +140,7 @@ void City::setName(std::string newName)
 	name = newName;
 }
 
-void City::setCinemas(std::vector<std::string> cinemasList)
+void City::setCinemas(std::vector<Cinema> cinemasList)
 {
 	cinemas = cinemasList;
 }

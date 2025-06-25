@@ -18,6 +18,21 @@ void Manager::addHalls()
 	std::string hallLocation = getUserInput();
 	hall.setLocation(hallLocation);
 	addToFile("assets/halls.txt", std::ios::app, hall.getLocation());
+
+	std::cout << "Number of seats: ";
+	int numberOfSeats;
+	std::cin >> numberOfSeats;
+	hall.setNumberOfSeats(numberOfSeats);
+	addToFile("assets/halls.txt", std::ios::app, std::to_string(hall.getNumberOfSeats()));
+
+	if (manager.ownedCinemas.size() == 1)
+	{
+		
+	}
+	else
+	{
+
+	}
 }
 
 void Manager::addCinema()
@@ -67,14 +82,14 @@ void Manager::addCinema()
 	{
 		addToFile("assets/cities.txt", std::ios::app, cinema.getCity());
 		currentCity.setName(cinemaCity);
-		currentCity.addCinema(cinema.getId());
+		currentCity.addCinema(cinema);
 		currentCity.addCinemaToFile("assets/cities.txt", cinemaCity, cinema.getId());
 		cities.push_back(currentCity);
 	}
 	else
 	{
 		currentCity = currentCity.findCity(cinemaCity);
-		currentCity.addCinema(cinema.getId());
+		currentCity.addCinema(cinema);
 		currentCity.addCinemaToFile("assets/cities.txt", cinemaCity, cinema.getId());
 	}
 

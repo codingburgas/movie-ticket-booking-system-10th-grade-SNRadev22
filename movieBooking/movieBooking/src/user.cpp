@@ -45,7 +45,7 @@ void User::browseOffers()
 
 void User::browseCinemas(City city)
 {
-		cinema.displayCinemas("assets/cinemas.txt", city.getCinemas());
+		cinema.displayCinemas(city.getCinemas());
 
 		std::string chosenCinema;
 		std::cin.ignore();
