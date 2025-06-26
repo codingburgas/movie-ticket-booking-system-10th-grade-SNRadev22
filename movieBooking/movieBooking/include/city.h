@@ -7,6 +7,7 @@ class City
 {
 public:
 	City findCity(std::string nameToFind);
+	Cinema findCinema(std::string nameToFind);
 	void addCinema(Cinema cinema);
 	void loadCities(const std::string fileName);
 

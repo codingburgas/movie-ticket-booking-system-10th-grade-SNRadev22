@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include "hall.h"
+#include "movie.h"
 
 class Cinema
 {
@@ -14,6 +15,7 @@ public:
 	std::string getId();
 	std::string getOwner();
 	std::vector <Hall> getHalls();
+	std::vector <Movie> getMovies();
 
 	void setName(std::string newName);
 	void setCity(std::string newCity);
@@ -25,7 +27,8 @@ public:
 	void displayCinemas(std::vector<Cinema> cinemas);
 	void addHall(Hall hall);
 	Hall findHall(std::string nameToFind);
-
+	void addMovie(Movie movie);
+	void displayMovies(std::vector<Movie> movies);
 
 private:
 	std::string name;
@@ -34,6 +37,7 @@ private:
 	std::string id;
 	std::string owner;
 	std::vector<Hall> halls;
+	std::vector<Movie> movies;
 };
 
 extern Cinema cinema;

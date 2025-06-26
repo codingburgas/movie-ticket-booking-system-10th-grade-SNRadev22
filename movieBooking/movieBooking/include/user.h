@@ -9,6 +9,7 @@ class User : BaseUser
 public:
 	void browseOffers();
 	void browseCinemas(City city);
+	void browseMovies(Cinema cinema);
 
 private:
 

@@ -177,17 +177,25 @@ void Manager::addMovie()
 	std::cout << "Movie title: ";
 	std::string movieTitle = getUserInput();
 	movie.setTitle(movieTitle);
+	addToFile("assets/movies.txt", std::ios::app, movie.getTitle());
+
 	std::cout << "Movie language: ";
 	std::string movieLanguage = getUserInput();
 	movie.setLanguage(movieLanguage);
+	addToFile("assets/movies.txt", std::ios::app, movie.getLanguage());
+
 	std::cout << "Movie genre: ";
 	std::string movieGenre = getUserInput();
 	movie.setGenre(movieGenre);
 	std::cout << "Movie length (in minutes): ";
+	addToFile("assets/movies.txt", std::ios::app, movie.getGenre());
+
 	int movieLength;
 	std::cin >> movieLength;
 	movie.setLength(movieLength);
+	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getLength()));
 	std::cin.ignore();
+
 	std::cout << "Movie date (YYYY-MM-DD): ";
 	std::string movieDate = getUserInput();
 	movie.setDate(movieDate);
@@ -196,6 +204,7 @@ void Manager::addMovie()
 	std::cin >> moviePrice;
 	movie.setPrice(moviePrice);
 	std::cin.ignore();
+	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getPrice()));
 
 	Cinema cinema;
 	cinema.displayCinemas(manager.ownedCinemas);
@@ -211,11 +220,7 @@ void Manager::addMovie()
 		return;
 	}
 	movie.setHall(currentHall);
-	addToFile("assets/movies.txt", std::ios::app, movie.getTitle());
-	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getLength()));
-	addToFile("assets/movies.txt", std::ios::app, movie.getLanguage());
-	addToFile("assets/movies.txt", std::ios::app, movie.getGenre());
-	addToFile("assets/movies.txt", std::ios::app, movie.getDate());
-	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getPrice()));
 	addToFile("assets/movies.txt", std::ios::app, movie.getHall().getName());
+
+	cinema.addMovie(movie);
 }

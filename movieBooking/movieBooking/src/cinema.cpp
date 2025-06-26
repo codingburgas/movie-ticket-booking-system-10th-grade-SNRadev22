@@ -27,6 +27,10 @@ std::vector <Hall> Cinema::getHalls()
 {
 	return halls;
 }
+std::vector <Movie> Cinema::getMovies()
+{
+	return movies;
+}
 
 void Cinema::setName(std::string newName)
 {
@@ -95,6 +99,11 @@ void Cinema::addHall(Hall hall)
 	halls.push_back(hall);
 }
 
+void Cinema::addMovie(Movie movie)
+{
+	movies.push_back(movie);
+}
+
 Hall Cinema::findHall(std::string nameToFind)
 {
 	for (size_t i = 0; i < halls.size(); i++)
@@ -106,4 +115,21 @@ Hall Cinema::findHall(std::string nameToFind)
 		}
 	}
 	return Hall(); // Return an empty Hall if not found
+}
+
+void Cinema::displayMovies(std::vector<Movie> movies)
+{
+	for (size_t i = 0; i < movies.size(); i++)
+	{
+		std::cout << std::endl << std::endl;
+		std::cout << "------------------------" << std::endl;
+		std::cout << "Movie Title: " << movies[i].getTitle() << std::endl;
+		std::cout << "Language: " << movies[i].getLanguage() << std::endl;
+		std::cout << "Genre: " << movies[i].getGenre() << std::endl;
+		std::cout << "Length: " << movies[i].getLength() << " minutes" << std::endl;
+		std::cout << "Date: " << movies[i].getDate() << std::endl;
+		std::cout << "Price: $" << movies[i].getPrice() << std::endl;
+		//std::cout << "Hall: " << movies[i].getHall().getName() << std::endl;
+		std::cout << "------------------------" << std::endl;
+	}
 }

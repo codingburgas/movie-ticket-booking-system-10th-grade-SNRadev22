@@ -5,13 +5,26 @@ std::vector<City> cities;
 
 City City::findCity(std::string nameToFind)
 {
-	for (size_t i = 0; i < cities.size(); ++i)
+	for (size_t i = 0; i < cities.size(); i++)
 	{
 		if (cities[i].name == nameToFind)
 		{
 			return cities[i];
 		}
 	}
+}
+
+Cinema City::findCinema(std::string nameToFind)
+{
+	for (size_t i = 0; i < cinemas.size(); i++)
+	{
+		if (cinemas[i].getName() == nameToFind)
+		{
+			return cinemas[i];
+		}
+	}
+	std::cerr << "Cinema not found!" << std::endl;
+	return Cinema();
 }
 
 void City::loadCities(const std::string fileName)

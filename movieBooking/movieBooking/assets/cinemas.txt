@@ -18,3 +18,8 @@ CCC A1
 Burgas
 123St
 stas
+000
+CINEMACITY A1
+Burgas
+MALLGALLERY
+stas

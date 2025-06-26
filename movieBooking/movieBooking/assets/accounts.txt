@@ -2,3 +2,7 @@ SNR@
 stas
 123
 MANAGER
+STAS@anv.bg
+snr
+321
+USER

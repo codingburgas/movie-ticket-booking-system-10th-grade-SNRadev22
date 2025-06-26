@@ -54,6 +54,8 @@ void User::browseCinemas(City city)
 			chosenCinema = getUserInput();
 			if (exists("assets/cinemas.txt", chosenCinema))
 			{
+				Cinema cinema = city.findCinema(chosenCinema);
+				browseMovies(cinema);
 				break;
 			}
 			else
@@ -62,3 +64,24 @@ void User::browseCinemas(City city)
 			}
 		}
 	}
+
+void User::browseMovies(Cinema cinema)
+{
+	cinema.displayMovies(cinema.getMovies());
+	std::string chosenMovie;
+	std::cin.ignore();
+	while (true)
+	{
+		chosenMovie = getUserInput();
+		if (exists("assets/movies.txt", chosenMovie))
+		{
+			// Logic to book a ticket or view details can be added here
+			std::cout << "You have selected the movie: " << chosenMovie << std::endl;
+			break;
+		}
+		else
+		{
+			std::cout << "There are no movies with this title!" << std::endl;
+		}
+	}
+}
