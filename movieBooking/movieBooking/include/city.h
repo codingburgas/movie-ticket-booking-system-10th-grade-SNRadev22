@@ -8,7 +8,6 @@ class City
 public:
 	City findCity(std::string nameToFind);
 	void addCinema(Cinema cinema);
-	void addCinemaToFile(const std::string fileName, std::string nameToFind, std::string cinemaId);
 	void loadCities(const std::string fileName);
 
 	std::string getName();

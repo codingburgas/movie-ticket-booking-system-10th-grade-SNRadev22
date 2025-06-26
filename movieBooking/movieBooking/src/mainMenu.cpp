@@ -95,7 +95,7 @@ void mainMenuManager()
 		switch (choice)
 		{
 		case 1:
-
+			manager.addMovie();
 			break;
 
 		case 2:

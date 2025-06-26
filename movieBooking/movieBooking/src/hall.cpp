@@ -1,5 +1,7 @@
 #include "../include/hall.h"
 
+Hall hall;
+
 std::string Hall::getName()
 {
 	return name;

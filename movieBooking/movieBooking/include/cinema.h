@@ -13,6 +13,7 @@ public:
 	std::string getLocation();
 	std::string getId();
 	std::string getOwner();
+	std::vector <Hall> getHalls();
 
 	void setName(std::string newName);
 	void setCity(std::string newCity);
@@ -23,6 +24,7 @@ public:
 	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
 	void displayCinemas(std::vector<Cinema> cinemas);
 	void addHall(Hall hall);
+	Hall findHall(std::string nameToFind);
 
 
 private:

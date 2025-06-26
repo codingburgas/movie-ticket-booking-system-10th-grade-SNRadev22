@@ -5,6 +5,7 @@
 #include "Utility.h"
 #include <iostream>
 #include <vector>
+#include "movie.h"
 
 class Manager : BaseUser
 {
@@ -13,6 +14,8 @@ public:
 	void addCinema();
 	void loadCinemas(const std::string& fileName);
 	void displayCinemas();
+	void addMovie();
+	Cinema findCinema(std::string nameToFind);
 
 private:
 	std::vector<Cinema> ownedCinemas;

@@ -14,48 +14,6 @@ City City::findCity(std::string nameToFind)
 	}
 }
 
-void City::addCinemaToFile(const std::string fileName, std::string nameToFind, std::string cinemaId)
-{
-	std::fstream file;
-	std::vector<std::string> lines;
-	std::string line;
-	file.open(fileName, std::ios::in);
-	if (!file.is_open())
-	{
-		std::cerr << "Error while opening file!" << std::endl;
-	}
-	else
-	{
-		while (getline(file, line))
-		{
-			lines.push_back(line);
-			if (line == nameToFind)
-			{
-				std::cout << "line found" << std::endl;
-				getline(file, line);
-				line += " " + cinemaId;
-				lines.push_back(line);
-				break;
-			}
-		}
-
-		while (getline(file, line))
-		{
-			lines.push_back(line);
-		}
-
-		file.close();
-		file.open(fileName, std::ios::out | std::ios::trunc);
-
-		for (size_t i = 0; i < lines.size(); i++)
-		{
-			file << lines[i] << std::endl;
-		}
-
-		file.close();
-	}
-}
-
 void City::loadCities(const std::string fileName)
 {
 	std::ifstream cityFile(fileName);
@@ -79,14 +37,13 @@ void City::loadCities(const std::string fileName)
 		currentCity.setName(cityName);
 
 		std::string line;
-		if (getline(cityFile, line))  // The line of cinema IDs
+		if (getline(cityFile, line))
 		{
 			std::istringstream iss(line);
 			std::string idToFind;
 
 			while (iss >> idToFind)
 			{
-				// Reset cinema file to the beginning
 				cinemaFile.clear();
 				cinemaFile.seekg(0);
 

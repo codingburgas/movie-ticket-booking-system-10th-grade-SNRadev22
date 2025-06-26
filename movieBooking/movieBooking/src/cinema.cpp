@@ -23,6 +23,10 @@ std::string Cinema::getOwner()
 {
 	return owner;
 }
+std::vector <Hall> Cinema::getHalls()
+{
+	return halls;
+}
 
 void Cinema::setName(std::string newName)
 {
@@ -89,4 +93,17 @@ void Cinema::displayCinemas(std::vector<Cinema> cinemas)
 void Cinema::addHall(Hall hall)
 {
 	halls.push_back(hall);
+}
+
+Hall Cinema::findHall(std::string nameToFind)
+{
+	for (size_t i = 0; i < halls.size(); i++)
+	{
+		if (halls[i].getName() == nameToFind)
+		{
+			std::cout << halls[i].getName() << std::endl;
+			return halls[i];
+		}
+	}
+	return Hall(); // Return an empty Hall if not found
 }

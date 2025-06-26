@@ -59,3 +59,45 @@ void addToFile(const std::string& fileName, std::ios_base::openmode mode, const 
 	}
 
 }
+
+void addFragmentToFile(const std::string fileName, std::string toFind, std::string toAdd)
+{
+	std::fstream file;
+	std::vector<std::string> lines;
+	std::string line;
+	file.open(fileName, std::ios::in);
+	if (!file.is_open())
+	{
+		std::cerr << "Error while opening file!" << std::endl;
+	}
+	else
+	{
+		while (getline(file, line))
+		{
+			lines.push_back(line);
+			if (line == toFind)
+			{
+				std::cout << "line found" << std::endl;
+				getline(file, line);
+				line += " " + toAdd;
+				lines.push_back(line);
+				break;
+			}
+		}
+
+		while (getline(file, line))
+		{
+			lines.push_back(line);
+		}
+
+		file.close();
+		file.open(fileName, std::ios::out | std::ios::trunc);
+
+		for (size_t i = 0; i < lines.size(); i++)
+		{
+			file << lines[i] << std::endl;
+		}
+
+		file.close();
+	}
+}
