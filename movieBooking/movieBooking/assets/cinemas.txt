@@ -1,25 +1,24 @@
 333
-CC A1
+ A1 A2 C1
+Cinema City
 Burgas
 Mall Gallery
-stas
+SNRadev22
 222
-CCC A1
+ A1
+
+CC
+Burgas
+Mall Plaza
+SNRadev22
+111
+C A1 A2
+Burgas
+D
+SNRadev22
+123
+ A1
+Cinema
 Plovdiv
-MH
-stas
-344
-4343 1
-43434
-34343
-stas
-777
-CCC A1
-Burgas
-123St
-stas
-000
-CINEMACITY A1
-Burgas
-MALLGALLERY
-stas
+Mall 
+SNRadev22

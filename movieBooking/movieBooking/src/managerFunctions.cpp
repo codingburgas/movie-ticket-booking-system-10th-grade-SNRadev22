@@ -77,10 +77,9 @@ void Manager::addCinema()
 		}
 		else
 		{
-			addToFile("assets/halls.txt", std::ios::app, "\n");
-			addToFile("assets/halls.txt", std::ios::app, "\n");
 			addFragmentToFile("assets/accounts.txt", manager.getEmail(), cinema.getId());
 			addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
+			addToFile("assets/cinemas.txt", std::ios::app, "");
 			break;
 		}
 	}
