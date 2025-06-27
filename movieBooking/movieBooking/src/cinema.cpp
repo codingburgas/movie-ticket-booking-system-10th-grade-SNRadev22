@@ -105,7 +105,7 @@ void Cinema::addMovie(Movie movie)
 	movies.push_back(movie);
 }
 
-Hall Cinema::findHall(std::string nameToFind)
+Hall& Cinema::findHall(std::string nameToFind)
 {
 	for (size_t i = 0; i < halls.size(); i++)
 	{
@@ -114,24 +114,6 @@ Hall Cinema::findHall(std::string nameToFind)
 			std::cout << halls[i].getName() << std::endl;
 			return halls[i];
 		}
-	}
-	return Hall(); // Return an empty Hall if not found
-}
-
-void Cinema::displayMovies(std::vector<Movie> movies)
-{
-	for (size_t i = 0; i < movies.size(); i++)
-	{
-		std::cout << std::endl << std::endl;
-		std::cout << "------------------------" << std::endl;
-		std::cout << "Movie Title: " << movies[i].getTitle() << std::endl;
-		std::cout << "Language: " << movies[i].getLanguage() << std::endl;
-		std::cout << "Genre: " << movies[i].getGenre() << std::endl;
-		std::cout << "Length: " << movies[i].getLength() << " minutes" << std::endl;
-		std::cout << "Date: " << movies[i].getDate() << std::endl;
-		std::cout << "Price: $" << movies[i].getPrice() << std::endl;
-		//std::cout << "Hall: " << movies[i].getHall().getName() << std::endl;
-		std::cout << "------------------------" << std::endl;
 	}
 }
 
@@ -191,4 +173,45 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 
 	cinemaFile.close();
 	hallFile.close();
+}
+
+void Cinema::dispalyMovies()
+{
+	if (movies.empty())
+	{
+		std::cout << "No movies available." << std::endl;
+		return;
+	}
+	std::cout << "Movies in " << name << " cinema:" << std::endl;
+	for (Movie& movie : movies)
+	{
+		std::cout << std::endl << std::endl;
+		std::cout << "------------------------" << std::endl;
+		std::cout << "Movie Title: " << movie.getTitle() << std::endl;
+		std::cout << "Language: " << movie.getLanguage() << std::endl;
+		std::cout << "Genre: " << movie.getGenre() << std::endl;
+		std::cout << "Length: " << movie.getLength() << " minutes" << std::endl;
+		std::cout << "Date: " << movie.getDate() << std::endl;
+		std::cout << "Price: $" << movie.getPrice() << std::endl;
+		std::cout << "Hall: " << movie.getHall().getName() << std::endl;
+		std::cout << "------------------------" << std::endl;
+	}
+}
+
+void Cinema::displayHalls()
+{
+	if (halls.empty())
+	{
+		std::cout << "No halls available." << std::endl;
+		return;
+	}
+	for (Hall& hall : halls)
+	{
+		std::cout << std::endl << std::endl;
+		std::cout << "------------------------" << std::endl;
+		std::cout << "Hall Name: " << hall.getName() << std::endl;
+		std::cout << "Location: " << hall.getLocation() << std::endl;
+		std::cout << "Number of Seats: " << hall.getNumberOfSeats() << std::endl;
+		std::cout << "------------------------" << std::endl;
+	}
 }

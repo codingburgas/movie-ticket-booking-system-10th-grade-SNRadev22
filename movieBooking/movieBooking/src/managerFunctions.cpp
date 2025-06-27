@@ -4,7 +4,7 @@
 
 Manager manager;
 
-Cinema Manager::findCinema(std::string nameToFind)
+Cinema& Manager::findCinema(std::string nameToFind)
 {
 	for (size_t i = 0; i < ownedCinemas.size(); ++i)
 	{
@@ -257,14 +257,15 @@ void Manager::addMovie()
 	std::cin.ignore();
 	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getPrice()));
 
-	Cinema cinema;
 	cinema.displayCinemas(manager.ownedCinemas);
 	std::cout << "Select cinema by name: " << std::endl;
 	std::string cinemaName = getUserInput();
-	cinema = findCinema(cinemaName);
+	Cinema& cinema = findCinema(cinemaName);
+
+	cinema.displayHalls();
 	std::cout << "Select hall by name: " << std::endl;
 	std::string hallName = getUserInput();
-	Hall currentHall = cinema.findHall(hallName);
+	Hall& currentHall = cinema.findHall(hallName);
 	if (currentHall.getName().empty())
 	{
 		std::cerr << "Hall not found in the selected cinema." << std::endl;

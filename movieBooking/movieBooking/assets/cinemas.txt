@@ -1,12 +1,12 @@
 333
-
-CC
+ A1 A2
+Cinema City
 Burgas
-Mall gallery
-SNR
+Mall Gallery
+SNRadev22
 222
-
-C
+ B1 B2
+Oberon
 Plovdiv
-MP
-SNR
+Mall Plaza
+SNRadev22

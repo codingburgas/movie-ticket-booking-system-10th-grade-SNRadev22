@@ -119,7 +119,6 @@ void drawRegisterUser()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
 			break;
 		}
 	}
@@ -135,16 +134,19 @@ void drawRegisterUser()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
-	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 
 	baseUser.setRank("USER");
+
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
+	addToFile("assets/accounts.txt", std::ios::app, "");
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
 
 	selectMainMenu();

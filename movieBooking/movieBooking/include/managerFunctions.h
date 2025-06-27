@@ -29,7 +29,7 @@ public:
 	void addCinema();
 	void displayCinemas();
 	void addMovie();
-	Cinema findCinema(std::string nameToFind);
+	Cinema& findCinema(std::string nameToFind);
 	void loadOwnedCinemas(const std::string fileName, std::string managerEmailToFInd);
 
 private:

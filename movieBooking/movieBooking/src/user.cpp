@@ -66,7 +66,7 @@ void User::browseCinemas(City& city)
 
 void User::browseMovies(Cinema cinema)
 {
-	cinema.displayMovies(cinema.getMovies());
+	cinema.dispalyMovies();
 	std::string chosenMovie;
 	while (true)
 	{

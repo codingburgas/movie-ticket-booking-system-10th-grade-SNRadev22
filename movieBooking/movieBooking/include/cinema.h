@@ -26,10 +26,11 @@ public:
 	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
 	void displayCinemas(std::vector<Cinema> cinemas);
 	void addHall(Hall hall);
-	Hall findHall(std::string nameToFind);
+	Hall& findHall(std::string nameToFind);
 	void addMovie(Movie movie);
-	void displayMovies(std::vector<Movie> movies);
 	void loadHalls(const std::string& cinemaFileName, const std::string& hallFileName);
+	void dispalyMovies();
+	void displayHalls();
 
 private:
 	std::string name;
