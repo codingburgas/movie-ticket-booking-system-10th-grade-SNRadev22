@@ -56,34 +56,32 @@ void BaseUser::setRank(std::string rankStr)
 
 bool BaseUser::validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind)
 {
-	std::ifstream file;
-	file.open(fileName);
+	std::ifstream file(fileName);
 	if (!file)
 	{
 		std::cerr << "Error opening file: " << fileName << std::endl;
 		return false;
 	}
-	else
+
+	std::string email, skip, username, password, rankStr;
+	while (std::getline(file, email))
 	{
-		std::string email, username, password, rankStr, skip;
-		while (std::getline(file, email))
+		std::getline(file, skip);
+		std::getline(file, username);
+		std::getline(file, password);
+		std::getline(file, rankStr);
+
+		if (username == usernameToFind && password == passwordToFind)
 		{
-			std::getline(file, skip);
-			std::getline(file, username);
-			if (username == usernameToFind)
-			{
-				std::getline(file, password);
-				if (password == passwordToFind)
-				{
-					setEmail(email);
-					std::getline(file, rankStr);
-					setRank(rankStr);
-					file.close();
-					return true;
-				}
-			}
+			setEmail(email);
+			setUsername(username);
+			setPassword(password);
+			setRank(rankStr);
+			file.close();
+			return true;
 		}
-		file.close();
-		return false;
 	}
+
+	file.close();
+	return false;
 }

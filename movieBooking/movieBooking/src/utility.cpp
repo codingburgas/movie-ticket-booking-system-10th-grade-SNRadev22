@@ -101,3 +101,14 @@ void addFragmentToFile(const std::string fileName, std::string toFind, std::stri
 		file.close();
 	}
 }
+
+City& findCity(std::string nameToFind)
+{
+	for (size_t i = 0; i < cities.size(); i++)
+	{
+		if (cities[i].getName() == nameToFind)
+		{
+			return cities[i];
+		}
+	}
+}

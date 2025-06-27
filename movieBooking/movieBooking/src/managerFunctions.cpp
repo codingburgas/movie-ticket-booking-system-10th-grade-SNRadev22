@@ -139,7 +139,7 @@ void Manager::addHalls()
 
 void Manager::addCinema()
 {
-	City currentCity;
+
 
 	std::cout << "---ADD CINEMA---" << std::endl;
 
@@ -185,6 +185,7 @@ void Manager::addCinema()
 	if (!exists("assets/cities.txt", cinema.getCity()))
 	{
 		addToFile("assets/cities.txt", std::ios::app, cinema.getCity());
+		City currentCity;
 		currentCity.setName(cinemaCity);
 		currentCity.addCinema(cinema);
 		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId());
@@ -192,7 +193,7 @@ void Manager::addCinema()
 	}
 	else
 	{
-		currentCity = currentCity.findCity(cinemaCity);
+		City& currentCity = findCity(cinemaCity);
 		currentCity.addCinema(cinema);
 		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId());
 	}

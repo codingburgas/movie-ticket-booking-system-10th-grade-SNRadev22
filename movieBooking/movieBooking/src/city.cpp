@@ -3,17 +3,6 @@
 
 std::vector<City> cities;
 
-City City::findCity(std::string nameToFind)
-{
-	for (size_t i = 0; i < cities.size(); i++)
-	{
-		if (cities[i].name == nameToFind)
-		{
-			return cities[i];
-		}
-	}
-}
-
 Cinema City::findCinema(std::string nameToFind)
 {
 	for (size_t i = 0; i < cinemas.size(); i++)
@@ -43,10 +32,10 @@ void City::loadCities(const std::string fileName)
 		return;
 	}
 
-	City currentCity;
 	std::string cityName;
 	while (getline(cityFile, cityName))
 	{
+		City currentCity;
 		currentCity.setName(cityName);
 
 		std::string line;

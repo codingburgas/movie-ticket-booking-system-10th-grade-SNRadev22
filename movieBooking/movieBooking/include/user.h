@@ -8,7 +8,7 @@ class User : public BaseUser
 {
 public:
 	void browseOffers();
-	void browseCinemas(City city);
+	void browseCinemas(City& city);
 	void browseMovies(Cinema cinema);
 
 private:

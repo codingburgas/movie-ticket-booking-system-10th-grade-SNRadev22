@@ -30,7 +30,7 @@ void User::browseOffers()
 			chosenCityName = getUserInput();
 			if (exists("assets/cities.txt", chosenCityName))
 			{
-				currentCity = currentCity.findCity(chosenCityName);
+				City& currentCity = findCity(chosenCityName);
 				browseCinemas(currentCity);
 				file.close();
 				break;
@@ -43,12 +43,11 @@ void User::browseOffers()
 	}
 }
 
-void User::browseCinemas(City city)
+void User::browseCinemas(City& city)
 {
 		cinema.displayCinemas(city.getCinemas());
 
 		std::string chosenCinema;
-		std::cin.ignore();
 		while (true)
 		{
 			chosenCinema = getUserInput();
@@ -69,7 +68,6 @@ void User::browseMovies(Cinema cinema)
 {
 	cinema.displayMovies(cinema.getMovies());
 	std::string chosenMovie;
-	std::cin.ignore();
 	while (true)
 	{
 		chosenMovie = getUserInput();

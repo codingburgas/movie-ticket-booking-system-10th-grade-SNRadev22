@@ -1,9 +1,10 @@
-SNRadev22@codingburgas.bg
+SNR@
+
  333 222
-SNRadev22
+SNR
 123
 MANAGER
-SNR@
-SNR
+S@
+S
 321
 USER

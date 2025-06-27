@@ -1,12 +1,12 @@
 333
- A1 A2
-Cinema City
-Burgas
-Mall Gallery
-SNRadev22
-222
- A1 A2
+
 CC
+Burgas
+Mall gallery
+SNR
+222
+
+C
 Plovdiv
-Mall Plaza
-SNRadev22
+MP
+SNR
