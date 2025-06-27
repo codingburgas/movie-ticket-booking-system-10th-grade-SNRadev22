@@ -65,14 +65,17 @@ bool BaseUser::validAccount(const std::string& fileName, std::string usernameToF
 	}
 	else
 	{
-		std::string username, password, rankStr;
-		while (std::getline(file, username))
+		std::string email, username, password, rankStr, skip;
+		while (std::getline(file, email))
 		{
+			std::getline(file, skip);
+			std::getline(file, username);
 			if (username == usernameToFind)
 			{
 				std::getline(file, password);
 				if (password == passwordToFind)
 				{
+					setEmail(email);
 					std::getline(file, rankStr);
 					setRank(rankStr);
 					file.close();

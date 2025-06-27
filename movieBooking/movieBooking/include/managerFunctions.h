@@ -7,15 +7,30 @@
 #include <vector>
 #include "movie.h"
 
-class Manager : BaseUser
+class Manager : public BaseUser
 {
 public:
+	Manager()
+	{
+		setEmail("");
+		setUsername("");
+		setPassword("");
+		setRank("MANAGER");
+	}
+
+	Manager(BaseUser& user) {
+		setEmail(user.getEmail());
+		setUsername(user.getUsername());
+		setPassword(user.getPassword());
+		setRank("MANAGER");
+	}
+	
 	void addHalls();
 	void addCinema();
-	void loadCinemas(const std::string& fileName);
 	void displayCinemas();
 	void addMovie();
 	Cinema findCinema(std::string nameToFind);
+	void loadOwnedCinemas(const std::string fileName, std::string managerEmailToFInd);
 
 private:
 	std::vector<Cinema> ownedCinemas;

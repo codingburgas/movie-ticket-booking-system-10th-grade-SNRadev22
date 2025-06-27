@@ -64,6 +64,11 @@ void drawLoginPage()
 		else
 		{
 			std::cout << "Login successful!" << std::endl;
+			if (baseUser.getRank() == MANAGER)
+			{
+				manager = Manager(baseUser);
+				manager.loadOwnedCinemas("assets/accounts.txt", manager.getEmail());
+			}
 			break;
 		}
 	}
@@ -252,6 +257,7 @@ void drawRegisterManager()
 	baseUser.setPassword(password);
 
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
+	addToFile("assets/accounts.txt", std::ios::app, "");
 	manager.addCinema();
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());

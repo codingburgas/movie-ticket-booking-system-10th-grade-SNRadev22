@@ -4,7 +4,7 @@
 #include "city.h"
 #include "cinema.h"
 
-class User : BaseUser
+class User : public BaseUser
 {
 public:
 	void browseOffers();

@@ -1,4 +1,5 @@
 #include "../include/cinema.h"
+#include<sstream>
 
 Cinema cinema;
 
@@ -132,4 +133,62 @@ void Cinema::displayMovies(std::vector<Movie> movies)
 		//std::cout << "Hall: " << movies[i].getHall().getName() << std::endl;
 		std::cout << "------------------------" << std::endl;
 	}
+}
+
+void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hallFileName)
+{
+	std::ifstream cinemaFile(cinemaFileName);
+	if (!cinemaFile.is_open())
+	{
+		std::cerr << "Error opening cinema file: " << cinemaFileName << std::endl;
+		return;
+	}
+
+	std::ifstream hallFile(hallFileName);
+	if (!hallFile.is_open())
+	{
+		std::cerr << "Error opening hall file: " << hallFileName << std::endl;
+		return;
+	}
+
+	std::string line;
+	while (std::getline(cinemaFile, line))
+	{
+		if (line == this->id)
+		{
+			std::string hallsLine;
+			if (std::getline(cinemaFile, hallsLine))
+			{
+				std::istringstream iss(hallsLine);
+				std::string hallName;
+
+				while (iss >> hallName)
+				{
+					hallFile.clear();
+					hallFile.seekg(0);
+
+					std::string name, location, sizeStr;
+					while (std::getline(hallFile, name))
+					{
+						std::getline(hallFile, location);
+						std::getline(hallFile, sizeStr);
+
+						if (name == hallName)
+						{
+							Hall hall;
+							hall.setName(name);
+							hall.setLocation(location);
+							hall.setNumberOfSeats(std::stoi(sizeStr));
+							this->addHall(hall);
+							break;
+						}
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	cinemaFile.close();
+	hallFile.close();
 }

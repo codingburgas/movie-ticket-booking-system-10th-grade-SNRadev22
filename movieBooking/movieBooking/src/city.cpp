@@ -60,9 +60,10 @@ void City::loadCities(const std::string fileName)
 				cinemaFile.clear();
 				cinemaFile.seekg(0);
 
-				std::string id, name, city, location, owner;
+				std::string id, name, city, location, owner, skipHalls;
 				while (getline(cinemaFile, id))
 				{
+					getline(cinemaFile, skipHalls);
 					getline(cinemaFile, name);
 					getline(cinemaFile, city);
 					getline(cinemaFile, location);
@@ -76,6 +77,7 @@ void City::loadCities(const std::string fileName)
 						cinema.setCity(city);
 						cinema.setLocation(location);
 						cinema.setOwner(owner);
+						cinema.loadHalls("assets/cinemas.txt", "assets/halls.txt");
 
 						currentCity.addCinema(cinema);
 						break;

@@ -1,5 +1,6 @@
 #include "../include/managerFunctions.h"
 #include "../include/city.h"
+#include <sstream>
 
 Manager manager;
 
@@ -13,6 +14,81 @@ Cinema Manager::findCinema(std::string nameToFind)
 		}
 	}
 }
+
+void Manager::loadOwnedCinemas(const std::string fileName, std::string managerEmailToFInd)
+{
+
+	std::ifstream accountsFile(fileName);
+	if (!accountsFile.is_open())
+	{
+		std::cerr << "Error while opening file: " << fileName << std::endl;
+		return;
+	}
+
+	std::ifstream cinemaFile("assets/cinemas.txt");
+	if (!cinemaFile.is_open())
+	{
+		std::cerr << "Error while opening file: assets/cinemas.txt" << std::endl;
+		return;
+	}
+
+	bool found = false;
+	std::string managerEmail;
+	while (getline(accountsFile, managerEmail))
+	{
+		if (managerEmail == managerEmailToFInd)
+		{
+			found = true;
+			break;
+		}
+	}
+	if (found == true)
+	{
+		std::cout << "Manager with email " << managerEmailToFInd << " found." << std::endl;
+		std::string line;
+		if (getline(accountsFile, line))
+		{
+			std::istringstream iss(line);
+			std::string idToFind;
+
+			while (iss >> idToFind)
+			{
+				cinemaFile.clear();
+				cinemaFile.seekg(0);
+
+				std::string id, name, city, location, owner, hall, skipHalls;
+				while (getline(cinemaFile, id))
+				{
+					getline(cinemaFile, skipHalls);
+					getline(cinemaFile, name);
+					getline(cinemaFile, city);
+					getline(cinemaFile, location);
+					getline(cinemaFile, owner);
+
+					if (id == idToFind)
+					{
+						Cinema cinema;
+						cinema.setId(id);
+						cinema.setName(name);
+						cinema.setCity(city);
+						cinema.setLocation(location);
+						cinema.setOwner(owner);
+						cinema.loadHalls("assets/cinemas.txt", "assets/halls.txt");
+
+						ownedCinemas.push_back(cinema);
+						break;
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		std::cerr << "Manager with email " << managerEmailToFInd << " not found." << std::endl;
+	}
+		accountsFile.close();
+		cinemaFile.close();
+	}
 
 void Manager::addHalls()
 {
@@ -37,6 +113,7 @@ void Manager::addHalls()
 
 	if (manager.ownedCinemas.size() == 1)
 	{
+		displayCinemas();
 		cinema.addHall(hall);
 		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName());
 	}
@@ -129,32 +206,6 @@ void Manager::addCinema()
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getOwner());
 
 	manager.ownedCinemas.push_back(cinema);
-}
-
-void Manager::loadCinemas(const std::string& fileName)
-{
-	std::ifstream file(fileName);
-	if (!file.is_open())
-	{
-		std::cerr << "Error opening file: " << fileName << std::endl;
-		return;
-	}
-	Cinema cinema;
-	std::string line;
-	while (std::getline(file, line))
-	{
-		cinema.setId(line);
-		std::getline(file, line);
-		cinema.setName(line);
-		std::getline(file, line);
-		cinema.setCity(line);
-		std::getline(file, line);
-		cinema.setLocation(line);
-		std::getline(file, line);
-		cinema.setOwner(line);
-		manager.ownedCinemas.push_back(cinema);
-	}
-	file.close();
 }
 
 void Manager::displayCinemas()
