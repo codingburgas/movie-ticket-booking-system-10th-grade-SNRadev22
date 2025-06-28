@@ -1,4 +1,2 @@
 Burgas
- 333
-Plovdiv
- 222
+ 333 222

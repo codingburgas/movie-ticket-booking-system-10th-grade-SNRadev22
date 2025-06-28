@@ -6,6 +6,7 @@
 class Movie
 {
 public:
+	std::string getId();
 	std::string getTitle();
 	std::string getLanguage();
 	std::string getGenre();
@@ -14,6 +15,7 @@ public:
 	float getPrice();
 	Hall getHall();
 
+	void setId(std::string id);
 	void setTitle(std::string title);
 	void setLanguage(std::string language);
 	void setGenre(std::string genre);
@@ -23,6 +25,7 @@ public:
 	void setHall(Hall hall);
 
 private:
+	std::string id;
 	std::string title;
 	int length;
 	std::string language;

@@ -115,7 +115,7 @@ void Manager::addHalls()
 	{
 		displayCinemas();
 		cinema.addHall(hall);
-		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName());
+		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
 	}
 	else
 	{
@@ -130,7 +130,7 @@ void Manager::addHalls()
 			if (cinema.getId() == chosenCinema)
 			{
 				cinema.addHall(hall);
-				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName());
+				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
 				break;
 			}
 		}
@@ -139,8 +139,6 @@ void Manager::addHalls()
 
 void Manager::addCinema()
 {
-
-
 	std::cout << "---ADD CINEMA---" << std::endl;
 
 	while (true)
@@ -154,8 +152,9 @@ void Manager::addCinema()
 		}
 		else
 		{
-			addFragmentToFile("assets/accounts.txt", manager.getEmail(), cinema.getId());
+			addFragmentToFile("assets/accounts.txt", manager.getEmail(), cinema.getId(), 0);
 			addToFile("assets/cinemas.txt", std::ios::app, cinema.getId());
+			addToFile("assets/cinemas.txt", std::ios::app, "");
 			addToFile("assets/cinemas.txt", std::ios::app, "");
 			break;
 		}
@@ -188,14 +187,14 @@ void Manager::addCinema()
 		City currentCity;
 		currentCity.setName(cinemaCity);
 		currentCity.addCinema(cinema);
-		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId());
+		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId(), 0);
 		cities.push_back(currentCity);
 	}
 	else
 	{
 		City& currentCity = findCity(cinemaCity);
 		currentCity.addCinema(cinema);
-		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId());
+		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId(), 0);
 	}
 
 	std::cout << "Cinema location: " << std::endl;
@@ -224,6 +223,12 @@ void Manager::addMovie()
 {
 	std::cout << "---ADD MOVIE---" << std::endl;
 	std::cin.ignore();
+
+	std::cout << "Show ID: " << std::endl;
+	std::string showId = getUserInput();
+	movie.setId(showId);
+	addToFile("assets/movies.txt", std::ios::app, movie.getId());
+	addFragmentToFile("assets/cinemas.txt", cinema.getId(), movie.getId(), 1);
 
 	std::cout << "Movie title: ";
 	std::string movieTitle = getUserInput();

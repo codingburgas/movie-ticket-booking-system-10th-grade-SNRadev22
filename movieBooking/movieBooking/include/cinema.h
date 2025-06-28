@@ -29,6 +29,7 @@ public:
 	Hall& findHall(std::string nameToFind);
 	void addMovie(Movie movie);
 	void loadHalls(const std::string& cinemaFileName, const std::string& hallFileName);
+	void loadMovies(const std::string& cinemaFileName, const std::string& movieFileName);
 	void dispalyMovies();
 	void displayHalls();
 

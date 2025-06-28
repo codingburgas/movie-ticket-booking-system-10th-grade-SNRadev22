@@ -2,6 +2,10 @@
 
 Movie movie;
 
+std::string Movie::getId()
+{
+	return id;
+}
 std::string Movie::getTitle() 
 {
 	return title;
@@ -31,6 +35,10 @@ Hall Movie::getHall()
 	return hall;
 }
 
+void Movie::setId(std::string newId)
+{
+	id = newId;
+}
 void Movie::setTitle(std::string newTitle)
 {
 	title = newTitle;

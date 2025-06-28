@@ -60,7 +60,7 @@ void addToFile(const std::string& fileName, std::ios_base::openmode mode, const 
 
 }
 
-void addFragmentToFile(const std::string fileName, std::string toFind, std::string toAdd)
+void addFragmentToFile(const std::string fileName, std::string toFind, std::string toAdd, int skips)
 {
 	std::fstream file;
 	std::vector<std::string> lines;
@@ -74,9 +74,15 @@ void addFragmentToFile(const std::string fileName, std::string toFind, std::stri
 	{
 		while (getline(file, line))
 		{
-			lines.push_back(line);
 			if (line == toFind)
 			{
+				lines.push_back(line);
+				for (int i = 0; i < skips; i++)
+				{
+					getline(file, line);
+					lines.push_back(line);
+				}
+
 				std::cout << "line found" << std::endl;
 				getline(file, line);
 				line += " " + toAdd;

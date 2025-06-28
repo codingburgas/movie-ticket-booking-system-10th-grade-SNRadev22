@@ -1,11 +1,10 @@
-SNRadev22@codingburgas.bg
-
- 333 222
-SNRadev22
+SNR@
+ 222
+SNR
 123
 MANAGER
-stanislav-radev@abv.bg
+S@
 
-stas
+S
 321
 USER

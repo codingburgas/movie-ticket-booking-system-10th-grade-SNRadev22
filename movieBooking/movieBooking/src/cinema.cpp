@@ -175,6 +175,8 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 	hallFile.close();
 }
 
+
+
 void Cinema::dispalyMovies()
 {
 	if (movies.empty())
