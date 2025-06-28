@@ -66,14 +66,17 @@ void User::browseCinemas(City& city)
 
 void User::browseMovies(Cinema cinema)
 {
+	std::cout << "---MOVIES---" << std::endl;
 	cinema.dispalyMovies();
+
 	std::string chosenMovie;
 	while (true)
 	{
 		chosenMovie = getUserInput();
 		if (exists("assets/movies.txt", chosenMovie))
 		{
-			// Logic to book a ticket or view details can be added here
+			Movie& movie = cinema.findMovie(chosenMovie);
+			bookings.push_back(movie);
 			std::cout << "You have selected the movie: " << chosenMovie << std::endl;
 			break;
 		}
@@ -81,5 +84,25 @@ void User::browseMovies(Cinema cinema)
 		{
 			std::cout << "There are no movies with this title!" << std::endl;
 		}
+	}
+}
+
+void User::viewBookings()
+{
+	if (bookings.empty())
+	{
+		std::cout << "You have no bookings." << std::endl;
+		return;
+	}
+	std::cout << "Your bookings:" << std::endl;
+	for (Movie& movie : bookings)
+	{
+		std::cout << std::endl << std::endl;
+		std::cout << "------------------------" << std::endl;
+		std::cout << "Movie Title: " << movie.getTitle() << std::endl;
+		std::cout << "Date: " << movie.getDate() << std::endl;
+		std::cout << "Price: $" << movie.getPrice() << std::endl;
+		std::cout << "Hall: " << movie.getHall().getName() << std::endl;
+		std::cout << "------------------------" << std::endl;
 	}
 }

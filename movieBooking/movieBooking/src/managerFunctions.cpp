@@ -114,7 +114,7 @@ void Manager::addHalls()
 	if (manager.ownedCinemas.size() == 1)
 	{
 		displayCinemas();
-		cinema.addHall(hall);
+		manager.ownedCinemas[0].addHall(hall);
 		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
 	}
 	else
@@ -228,7 +228,6 @@ void Manager::addMovie()
 	std::string showId = getUserInput();
 	movie.setId(showId);
 	addToFile("assets/movies.txt", std::ios::app, movie.getId());
-	addFragmentToFile("assets/cinemas.txt", cinema.getId(), movie.getId(), 1);
 
 	std::cout << "Movie title: ";
 	std::string movieTitle = getUserInput();
@@ -255,6 +254,7 @@ void Manager::addMovie()
 	std::cout << "Movie date (YYYY-MM-DD): ";
 	std::string movieDate = getUserInput();
 	movie.setDate(movieDate);
+	addToFile("assets/movies.txt", std::ios::app, movie.getDate());
 	std::cout << "Ticket price: ";
 	float moviePrice;
 	std::cin >> moviePrice;
@@ -280,4 +280,5 @@ void Manager::addMovie()
 	addToFile("assets/movies.txt", std::ios::app, movie.getHall().getName());
 
 	cinema.addMovie(movie);
+	addFragmentToFile("assets/cinemas.txt", cinema.getId(), movie.getId(), 1);
 }

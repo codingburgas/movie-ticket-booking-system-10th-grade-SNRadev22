@@ -32,6 +32,7 @@ public:
 	void loadMovies(const std::string& cinemaFileName, const std::string& movieFileName);
 	void dispalyMovies();
 	void displayHalls();
+	Movie& findMovie(std::string nameToFind);
 
 private:
 	std::string name;

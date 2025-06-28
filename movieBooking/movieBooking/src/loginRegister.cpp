@@ -7,8 +7,8 @@
 #include<fstream>
 #include<string>
 #include "../include/city.h"
+#include "../include/user.h"
 
-BaseUser user;
 City city;
 
 void drawHomePage()
@@ -68,6 +68,16 @@ void drawLoginPage()
 			{
 				manager = Manager(baseUser);
 				manager.loadOwnedCinemas("assets/accounts.txt", manager.getEmail());
+			}
+			else if (baseUser.getRank() == ADMIN)
+			{
+				user = User(baseUser);
+				cinema.loadHalls("assets/cinemas.txt", "assets/halls.txt");
+				cinema.loadMovies("assets/cinemas.txt", "assets/movies.txt");
+			}
+			else if (baseUser.getRank() == USER)
+			{
+				user = User(baseUser);
 			}
 			break;
 		}

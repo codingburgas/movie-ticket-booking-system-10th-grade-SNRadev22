@@ -38,7 +38,7 @@ void mainMenuUser()
 			break;
 
 		case 2:
-
+			user.viewBookings();
 			break;
 
 		case 3:
