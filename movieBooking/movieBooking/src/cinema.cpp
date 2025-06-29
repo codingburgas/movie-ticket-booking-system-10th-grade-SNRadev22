@@ -24,7 +24,7 @@ std::string Cinema::getOwner()
 {
 	return owner;
 }
-std::vector <Hall> Cinema::getHalls()
+std::vector <Hall>& Cinema::getHalls()
 {
 	return halls;
 }
@@ -109,9 +109,8 @@ Hall& Cinema::findHall(std::string nameToFind)
 {
 	for (size_t i = 0; i < halls.size(); i++)
 	{
-		if (halls[i].getName() == nameToFind)
+		if (halls[i].getId() == nameToFind)
 		{
-			std::cout << halls[i].getName() << std::endl;
 			return halls[i];
 		}
 	}
@@ -133,9 +132,6 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 		return;
 	}
 
-	cinemaFile.clear();
-	cinemaFile.seekg(0);
-
 	std::string line;
 	while (std::getline(cinemaFile, line))
 	{
@@ -149,31 +145,35 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 				std::cerr << "Halls line: " << hallsLine << std::endl;
 
 				std::istringstream iss(hallsLine);
-				std::string hallName;
+				std::string hallId;
 
-				while (iss >> hallName)
+				while (iss >> hallId)
 				{
-					std::cerr << "Looking for hall: " << hallName << std::endl;
+					std::cerr << "Looking for hall ID: " << hallId << std::endl;
 
 					hallFile.clear();
 					hallFile.seekg(0);
 
-					std::string name, location, sizeStr;
+					std::string id, name, location, sizeStr;
 					bool foundHall = false;
 
-					while (std::getline(hallFile, name))
+					while (std::getline(hallFile, id))
 					{
-						if (!std::getline(hallFile, location) || !std::getline(hallFile, sizeStr))
+						if (!std::getline(hallFile, name) ||
+							!std::getline(hallFile, location) ||
+							!std::getline(hallFile, sizeStr))
 						{
-							std::cerr << "Invalid hall format or file ends prematurely for hall: " << name << std::endl;
+							std::cerr << "Invalid hall format or file ends prematurely for hall ID: " << id << std::endl;
 							break;
 						}
 
-						if (name == hallName)
+						if (id == hallId)
 						{
-							std::cerr << "Found hall: " << name << ", Location: " << location << ", Size: " << sizeStr << std::endl;
+							std::cerr << "Found hall ID: " << id << ", Name: " << name
+								<< ", Location: " << location << ", Size: " << sizeStr << std::endl;
 
 							Hall hall;
+							hall.setId(id);
 							hall.setName(name);
 							hall.setLocation(location);
 							try
@@ -194,7 +194,7 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 
 					if (!foundHall)
 					{
-						std::cerr << "Hall " << hallName << " not found in " << hallFileName << std::endl;
+						std::cerr << "Hall ID " << hallId << " not found in " << hallFileName << std::endl;
 					}
 				}
 			}

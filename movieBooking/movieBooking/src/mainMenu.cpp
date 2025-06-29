@@ -107,6 +107,7 @@ void mainMenuManager()
 			break;
 
 		case 4:
+			manager.editHall();
 			break;
 
 		case 5:

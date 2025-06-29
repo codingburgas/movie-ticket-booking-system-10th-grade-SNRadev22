@@ -14,7 +14,7 @@ public:
 	std::string getLocation();
 	std::string getId();
 	std::string getOwner();
-	std::vector <Hall> getHalls();
+	std::vector <Hall>& getHalls();
 	std::vector <Movie> getMovies();
 
 	void setName(std::string newName);

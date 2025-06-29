@@ -95,6 +95,11 @@ void Manager::addHalls()
 	std::cout << "---ADD HALLS---" << std::endl;
 	std::cin.ignore();
 
+	std::cout << "Hall id: ";
+	std::string hallId = getUserInput();
+	hall.setId(hallId);
+	addToFile("assets/halls.txt", std::ios::app, hall.getId());
+
 	std::cout << "Hall name: ";
 	std::string hallName = getUserInput();
 	hall.setName(hallName);
@@ -115,7 +120,7 @@ void Manager::addHalls()
 	{
 		displayCinemas();
 		manager.ownedCinemas[0].addHall(hall);
-		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
+		addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getId(), 0);
 	}
 	else
 	{
@@ -130,9 +135,100 @@ void Manager::addHalls()
 			if (cinema.getId() == chosenCinema)
 			{
 				cinema.addHall(hall);
-				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
+				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getId(), 0);
 				break;
 			}
+		}
+	}
+}
+
+void Manager::editHall()
+{
+	std::cout << "---EDIT HALL---" << std::endl;
+	if (this->ownedCinemas.size() == 1)
+	{
+		Hall& hall = this->ownedCinemas[0].getHalls()[0];
+		this->ownedCinemas[0].displayHalls();
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Name" << std::endl;
+		std::cout << "2. Location" << std::endl;
+		std::cout << "3. Number of seats" << std::endl;
+		int choice;
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1: {
+			std::cout << "Enter new name: ";
+			std::string newName = getUserInput();
+			editFile("assets/halls.txt", hall.getName(), newName);
+			hall.setName(newName);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new location: ";
+			std::string newLocation = getUserInput();
+			editFile("assets/halls.txt", hall.getLocation(), newLocation);
+			hall.setLocation(newLocation);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new number of seats: ";
+			int newSeats;
+			std::cin >> newSeats;
+			editFile("assets/halls.txt", std::to_string(hall.getNumberOfSeats()), std::to_string(newSeats));
+			hall.setNumberOfSeats(newSeats);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
+		}
+	}
+	else
+	{
+		displayCinemas();
+		std::cout << "Select cinema by name to edit hall: ";
+		std::string cinemaName = getUserInput();
+		Cinema& cinema = findCinema(cinemaName);
+
+		cinema.displayHalls();
+
+		std::cout << "Select hall by name to edit: ";
+		std::string hallId = getUserInput();
+		Hall& hall = cinema.findHall(hallId);
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Name" << std::endl;
+		std::cout << "2. Location" << std::endl;
+		std::cout << "3. Number of seats" << std::endl;
+		int choice;
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1: {
+			std::cout << "Enter new name: ";
+			std::string newName = getUserInput();
+			editFile("assets/halls.txt", hall.getName(), newName);
+			hall.setName(newName);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new location: ";
+			std::string newLocation = getUserInput();
+			editFile("assets/halls.txt", hall.getLocation(), newLocation);
+			hall.setLocation(newLocation);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new number of seats: ";
+			int newSeats;
+			std::cin >> newSeats;
+			editFile("assets/halls.txt", std::to_string(hall.getNumberOfSeats()), std::to_string(newSeats));
+			hall.setNumberOfSeats(newSeats);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
 		}
 	}
 }
