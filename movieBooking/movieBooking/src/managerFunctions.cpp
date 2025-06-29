@@ -208,6 +208,88 @@ void Manager::addCinema()
 	manager.ownedCinemas.push_back(cinema);
 }
 
+void Manager::editCinema()
+{
+	std::cout << "---EDIT CINEMA---" << std::endl;
+	if (this->ownedCinemas.size() == 1)
+	{
+		this->ownedCinemas[0].displayCinemas(ownedCinemas);
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Name" << std::endl;
+		std::cout << "2. City" << std::endl;
+		std::cout << "3. Location" << std::endl;
+		int choice;
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1: {
+			std::cout << "Enter new name: ";
+			std::string newName = getUserInput();
+			editFile("assets/cinemas.txt", this->ownedCinemas[0].getName(), newName);
+			this->ownedCinemas[0].setName(newName);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new city: ";
+			std::string newCity = getUserInput();
+			editFile("assets/cinemas.txt", this->ownedCinemas[0].getCity(), newCity);
+			this->ownedCinemas[0].setCity(newCity);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new location: ";
+			std::string newLocation = getUserInput();
+			editFile("assets/cinemas.txt", this->ownedCinemas[0].getLocation(), newLocation);
+			this->ownedCinemas[0].setLocation(newLocation);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
+		}
+	}
+	else
+	{
+		displayCinemas();
+		std::cout << "Select cinema by name to edit: ";
+		std::string cinemaName = getUserInput();
+		Cinema& cinema = findCinema(cinemaName);
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Name" << std::endl;
+		std::cout << "2. City" << std::endl;
+		std::cout << "3. Location" << std::endl;
+		int choice;
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1: {
+			std::cout << "Enter new name: ";
+			std::string newName = getUserInput();
+			editFile("assets/cinemas.txt", cinema.getName(), newName);
+			cinema.setName(newName);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new city: ";
+			std::string newCity = getUserInput();
+			editFile("assets/cinemas.txt", cinema.getCity(), newCity);
+			cinema.setCity(newCity);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new location: ";
+			std::string newLocation = getUserInput();
+			editFile("assets/cinemas.txt", cinema.getLocation(), newLocation);
+			cinema.setLocation(newLocation);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
+		}
+	}
+}
+
 void Manager::displayCinemas()
 {
 	for (Cinema cinema : ownedCinemas)
@@ -290,9 +372,10 @@ void Manager::editMovie()
 	if (this->ownedCinemas.size() == 1)
 	{
 		this->ownedCinemas[0].dispalyMovies();
-		std::cout << "Select movie by ID to edit: ";
-		std::string movieId = getUserInput();
-		Movie& movie = this->ownedCinemas[0].findMovie(movieId);
+		std::cout << "Select movie by name to edit: ";
+		std::string movieName = getUserInput();
+		Movie& movie = this->ownedCinemas[0].findMovie(movieName);
+
 		std::cout << "What do you want to edit?" << std::endl;
 		std::cout << "1. Title" << std::endl;
 		std::cout << "2. Language" << std::endl;
@@ -357,19 +440,75 @@ void Manager::editMovie()
 	else
 	{
 		std::string chosenCinema;
-
 		displayCinemas();
-
-		std::cout << "Select cinema by ID to add hall: ";
+		std::cout << "Select cinema by name to edit movie: ";
 		std::cin >> chosenCinema;
-		for (Cinema& cinema : manager.ownedCinemas)
+		Cinema& cinema = findCinema(chosenCinema);
+		cinema.dispalyMovies();
+		std::cout << "Select movie by name to edit: ";
+		std::string movieName = getUserInput();
+		Movie& movie = cinema.findMovie(movieName);
+
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Title" << std::endl;
+		std::cout << "2. Language" << std::endl;
+		std::cout << "3. Genre" << std::endl;
+		std::cout << "4. Length" << std::endl;
+		std::cout << "5. Date" << std::endl;
+		std::cout << "6. Price" << std::endl;
+		int choice;
+		std::cin >> choice;
+		std::cin.ignore();
+		switch (choice)
 		{
-			if (cinema.getId() == chosenCinema)
-			{
-				cinema.addHall(hall);
-				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
-				break;
-			}
+		case 1: {
+			std::cout << "Enter new title: ";
+			std::string newTitle = getUserInput();
+			editFile("assets/movies.txt", movie.getTitle(), newTitle);
+			movie.setTitle(newTitle);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new language: ";
+			std::string newLanguage = getUserInput();
+			editFile("assets/movies.txt", movie.getLanguage(), newLanguage);
+			movie.setLanguage(newLanguage);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new genre: ";
+			std::string newGenre = getUserInput();
+			editFile("assets/movies.txt", movie.getGenre(), newGenre);
+			movie.setGenre(newGenre);
+			break;
+		}
+		case 4: {
+			std::cout << "Enter new length (in minutes): ";
+			int newLength;
+			std::cin >> newLength;
+			editFile("assets/movies.txt", std::to_string(movie.getLength()), std::to_string(newLength));
+			movie.setLength(newLength);
+			break;
+		}
+		case 5:
+		{
+			std::cout << "Enter new date (YYYY-MM-DD): ";
+			std::string newDate = getUserInput();
+			editFile("assets/movies.txt", movie.getDate(), newDate);
+			movie.setDate(newDate);
+			break;
+		}
+		case 6: {
+			std::cout << "Enter new price: ";
+			float newPrice;
+			std::cin >> newPrice;
+			editFile("assets/movies.txt", std::to_string(movie.getPrice()), std::to_string(newPrice));
+			movie.setPrice(newPrice);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
 		}
 	}
 }

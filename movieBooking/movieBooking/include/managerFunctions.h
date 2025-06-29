@@ -33,6 +33,8 @@ public:
 	void loadOwnedCinemas(const std::string fileName, std::string managerEmailToFInd);
 
 	void editMovie();
+	void editHall();
+	void editCinema();
 
 private:
 	std::vector<Cinema> ownedCinemas;

@@ -113,7 +113,7 @@ void mainMenuManager()
 			manager.addCinema();
 			break;
 		case 6:
-
+			manager.editCinema();
 			break;
 
 		case 7:
