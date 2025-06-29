@@ -99,7 +99,7 @@ void mainMenuManager()
 			break;
 
 		case 2:
-
+			manager.editMovie();
 			break;
 
 		case 3:

@@ -111,7 +111,7 @@ void Manager::addHalls()
 	hall.setNumberOfSeats(numberOfSeats);
 	addToFile("assets/halls.txt", std::ios::app, std::to_string(hall.getNumberOfSeats()));
 
-	if (manager.ownedCinemas.size() == 1)
+	if (this->ownedCinemas.size() == 1)
 	{
 		displayCinemas();
 		manager.ownedCinemas[0].addHall(hall);
@@ -281,4 +281,95 @@ void Manager::addMovie()
 
 	cinema.addMovie(movie);
 	addFragmentToFile("assets/cinemas.txt", cinema.getId(), movie.getId(), 1);
+}
+
+void Manager::editMovie()
+{
+	std::cout << "---EDIT MOVIE---" << std::endl;
+
+	if (this->ownedCinemas.size() == 1)
+	{
+		this->ownedCinemas[0].dispalyMovies();
+		std::cout << "Select movie by ID to edit: ";
+		std::string movieId = getUserInput();
+		Movie& movie = this->ownedCinemas[0].findMovie(movieId);
+		std::cout << "What do you want to edit?" << std::endl;
+		std::cout << "1. Title" << std::endl;
+		std::cout << "2. Language" << std::endl;
+		std::cout << "3. Genre" << std::endl;
+		std::cout << "4. Length" << std::endl;
+		std::cout << "5. Date" << std::endl;
+		std::cout << "6. Price" << std::endl;
+		int choice;
+		std::cin >> choice;
+		std::cin.ignore();
+		switch (choice)
+		{
+		case 1: {
+			std::cout << "Enter new title: ";
+			std::string newTitle = getUserInput();
+			editFile("assets/movies.txt", movie.getTitle(), newTitle);
+			movie.setTitle(newTitle);
+			break;
+		}
+		case 2: {
+			std::cout << "Enter new language: ";
+			std::string newLanguage = getUserInput();
+			editFile("assets/movies.txt", movie.getLanguage(), newLanguage);
+			movie.setLanguage(newLanguage);
+			break;
+		}
+		case 3: {
+			std::cout << "Enter new genre: ";
+			std::string newGenre = getUserInput();
+			editFile("assets/movies.txt", movie.getGenre(), newGenre);
+			movie.setGenre(newGenre);
+			break;
+		}
+		case 4: {
+			std::cout << "Enter new length (in minutes): ";
+			int newLength;
+			std::cin >> newLength;
+			editFile("assets/movies.txt", std::to_string(movie.getLength()), std::to_string(newLength));
+			movie.setLength(newLength);
+			break;
+		}
+		case 5: {
+			std::cout << "Enter new date (YYYY-MM-DD): ";
+			std::string newDate = getUserInput();
+			editFile("assets/movies.txt", movie.getDate(), newDate);
+			movie.setDate(newDate);
+			break;
+		}
+		case 6: {
+			std::cout << "Enter new price: ";
+			float newPrice;
+			std::cin >> newPrice;
+			editFile("assets/movies.txt", std::to_string(movie.getPrice()), std::to_string(newPrice));
+			movie.setPrice(newPrice);
+			break;
+		}
+		default:
+			std::cerr << "Invalid choice." << std::endl;
+			return;
+		}
+	}
+	else
+	{
+		std::string chosenCinema;
+
+		displayCinemas();
+
+		std::cout << "Select cinema by ID to add hall: ";
+		std::cin >> chosenCinema;
+		for (Cinema& cinema : manager.ownedCinemas)
+		{
+			if (cinema.getId() == chosenCinema)
+			{
+				cinema.addHall(hall);
+				addFragmentToFile("assets/cinemas.txt", cinema.getId(), hall.getName(), 0);
+				break;
+			}
+		}
+	}
 }

@@ -67,6 +67,7 @@ bool BaseUser::validAccount(const std::string& fileName, std::string usernameToF
 	while (std::getline(file, email))
 	{
 		std::getline(file, skip);
+		std::getline(file, skip);
 		std::getline(file, username);
 		std::getline(file, password);
 		std::getline(file, rankStr);

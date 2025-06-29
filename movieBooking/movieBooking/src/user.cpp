@@ -77,6 +77,7 @@ void User::browseMovies(Cinema cinema)
 		{
 			Movie& movie = cinema.findMovie(chosenMovie);
 			bookings.push_back(movie);
+			addFragmentToFile("assets/accounts.txt", this->getEmail(), movie.getId(), 1);
 			std::cout << "You have selected the movie: " << chosenMovie << std::endl;
 			break;
 		}

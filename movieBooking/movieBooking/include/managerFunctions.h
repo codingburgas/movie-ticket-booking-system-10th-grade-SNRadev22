@@ -32,6 +32,8 @@ public:
 	Cinema& findCinema(std::string nameToFind);
 	void loadOwnedCinemas(const std::string fileName, std::string managerEmailToFInd);
 
+	void editMovie();
+
 private:
 	std::vector<Cinema> ownedCinemas;
 };

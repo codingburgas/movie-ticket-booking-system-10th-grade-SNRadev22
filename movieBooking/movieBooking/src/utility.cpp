@@ -118,3 +118,39 @@ City& findCity(std::string nameToFind)
 		}
 	}
 }
+
+void editFile(const std::string& fileName, const std::string& toFind, const std::string& toAdd)
+{
+	std::fstream file;
+	std::vector<std::string> lines;
+	std::string line;
+	file.open(fileName, std::ios::in);
+	if (!file.is_open())
+	{
+		std::cerr << "Error while opening file!" << std::endl;
+	}
+	else
+	{
+		while (getline(file, line))
+		{
+			if (line == toFind)
+			{
+				line = toAdd;
+			}
+			lines.push_back(line);
+		}
+
+		while (getline(file, line))
+		{
+			lines.push_back(line);
+		}
+		file.close();
+
+		file.open(fileName, std::ios::out | std::ios::trunc);
+		for (size_t i = 0; i < lines.size(); i++)
+		{
+			file << lines[i] << std::endl;
+		}
+		file.close();
+	}
+}

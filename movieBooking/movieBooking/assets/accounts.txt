@@ -1,10 +1,6 @@
 SNR@
  333
+
 SNR
 123
 MANAGER
-S@
-
-S
-321
-USER
