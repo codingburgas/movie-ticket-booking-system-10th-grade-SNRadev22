@@ -26,6 +26,7 @@ public:
 	void browseOffers();
 	void browseCinemas(City& city);
 	void browseMovies(Cinema cinema);
+	void bookMovie(Movie& movie);
 
 	void viewBookings();
 private:

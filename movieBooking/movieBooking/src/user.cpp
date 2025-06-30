@@ -76,6 +76,8 @@ void User::browseMovies(Cinema cinema)
 		if (exists("assets/movies.txt", chosenMovie))
 		{
 			Movie& movie = cinema.findMovie(chosenMovie);
+			bookMovie(movie);
+
 			bookings.push_back(movie);
 			addFragmentToFile("assets/accounts.txt", this->getEmail(), movie.getId(), 1);
 			std::cout << "You have selected the movie: " << chosenMovie << std::endl;
@@ -86,6 +88,25 @@ void User::browseMovies(Cinema cinema)
 			std::cout << "There are no movies with this title!" << std::endl;
 		}
 	}
+}
+
+void User::bookMovie(Movie& movie)
+{
+	Hall& hall = movie.getHall();
+	hall.displayLayout();
+
+	std::cout << "Enter the row number you want to book: ";
+	int row;
+	std::cin >> row;
+	std::cin.ignore();
+
+	std::cout << "Enter the seat number you want to book: ";
+	int seat;
+	std::cin >> seat;
+	std::cin.ignore();
+
+	hall.editSeatLayout(row, seat);
+	hall.saveToFile("assets/halls.txt");
 }
 
 void User::viewBookings()

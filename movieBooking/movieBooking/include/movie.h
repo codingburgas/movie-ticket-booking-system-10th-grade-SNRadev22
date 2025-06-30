@@ -13,7 +13,7 @@ public:
 	int getLength();
 	std::string getDate();
 	float getPrice();
-	Hall getHall();
+	Hall& getHall();
 
 	void setId(std::string id);
 	void setTitle(std::string title);

@@ -77,3 +77,79 @@ void Hall::displayLayout()
 		std::cout << row << std::endl;
 	}
 }
+
+void Hall::editSeatLayout(int row, int seat)
+{
+	if (row < 0 || row >= rows)
+	{
+		std::cerr << "Invalid row number." << std::endl;
+		return;
+	}
+	else
+	{
+		if (seat < 0 || seat >= seatLayout[row].size())
+		{
+			std::cerr << "Invalid seat number." << std::endl;
+			return;
+		}
+		else
+		{
+			if (seatLayout[row][seat] == 'X')
+			{
+				std::cerr << "Seat already booked." << std::endl;
+				return;
+			}
+			{
+				seatLayout[row][seat] = 'X';
+				std::cout << "Seat booked successfully." << std::endl;
+			}
+		}
+	}
+}
+
+void Hall::saveToFile(const std::string& filename)
+{
+	std::ifstream inFile(filename);
+	if (!inFile.is_open()) {
+		std::cerr << "Could not open file for reading: " << filename << std::endl;
+		return;
+	}
+
+	std::ostringstream newFileContent;
+	std::string line;
+
+	while (std::getline(inFile, line)) {
+		if (line == id) {
+			// Found this hall's block — overwrite with updated data
+			newFileContent << id << "\n";
+			newFileContent << name << "\n";
+			newFileContent << location << "\n";
+			newFileContent << std::to_string(numberOfSeats) << "\n";
+			newFileContent << std::to_string(rows) << "\n";
+			for (const std::string& row : seatLayout) {
+				newFileContent << row << "\n";
+			}
+
+			// Skip over old block lines
+			for (int i = 0; i < 4 + rows; ++i) {
+				std::getline(inFile, line); // discard old lines
+			}
+		}
+		else {
+			newFileContent << line << "\n";
+		}
+	}
+
+	inFile.close();
+
+	// Now write everything back
+	std::ofstream outFile(filename, std::ios::trunc);
+	if (!outFile.is_open()) {
+		std::cerr << "Could not open file for writing: " << filename << std::endl;
+		return;
+	}
+	outFile << newFileContent.str();
+	outFile.close();
+
+	std::cout << "Hall layout saved successfully.\n";
+}

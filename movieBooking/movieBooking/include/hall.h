@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<iostream>
+#include<sstream>
 
 class Hall
 {
@@ -18,6 +19,8 @@ public:
 	void setNumberOfSeats(int seats);
 	void setRows(int newRows);
 	void setSeatLayout(std::vector<std::string> newLayout);
+	void editSeatLayout(int row, int seat);
+	void saveToFile(const std::string& filename);
 
 	void displayLayout();
 	void setLayout();

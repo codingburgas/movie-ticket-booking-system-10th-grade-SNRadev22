@@ -4,12 +4,5 @@ F1R1
 33
 3
 OOOOO
- OOO 
+ XOO 
   O  
-5
-A5
-f1r5
-33
-2
-OOO
- O 

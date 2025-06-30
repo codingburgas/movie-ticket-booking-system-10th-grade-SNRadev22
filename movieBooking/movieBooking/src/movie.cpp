@@ -30,7 +30,7 @@ float Movie::getPrice()
 {
 	return price;
 }
-Hall Movie::getHall()
+Hall& Movie::getHall()
 {
 	return hall;
 }
