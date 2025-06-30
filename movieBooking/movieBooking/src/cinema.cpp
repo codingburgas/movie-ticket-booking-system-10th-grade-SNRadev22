@@ -87,6 +87,8 @@ void Cinema::displayCinemas(std::vector<Cinema> cinemas)
 {
 	for (size_t i = 0; i < cinemas.size(); i++)
 	{
+		std::cout << std::endl;
+		std::cout << "------------------------" << std::endl;
 		std::cout << "Cinema Name: " << cinemas[i].getName() << std::endl;
 		std::cout << "City: " << cinemas[i].getCity() << std::endl;
 		std::cout << "Location: " << cinemas[i].getLocation() << std::endl;
@@ -302,7 +304,7 @@ void Cinema::dispalyMovies()
 	std::cout << "Movies in " << name << " cinema:" << std::endl;
 	for (Movie& movie : movies)
 	{
-		std::cout << std::endl << std::endl;
+		std::cout << std::endl;
 		std::cout << "------------------------" << std::endl;
 		std::cout << "Movie Title: " << movie.getTitle() << std::endl;
 		std::cout << "Language: " << movie.getLanguage() << std::endl;
@@ -324,7 +326,7 @@ void Cinema::displayHalls()
 	}
 	for (Hall& hall : halls)
 	{
-		std::cout << std::endl << std::endl;
+		std::cout << std::endl;
 		std::cout << "------------------------" << std::endl;
 		std::cout << "Hall Name: " << hall.getName() << std::endl;
 		std::cout << "Location: " << hall.getLocation() << std::endl;

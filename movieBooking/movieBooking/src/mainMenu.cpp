@@ -24,7 +24,7 @@ void mainMenuUser()
 	int choice;
 	while (true)
 	{
-		std::cout << "---CINEMABOOKING---" << std::endl;
+		std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
 		std::cout << "1. Browse booking offers" << std::endl;
 		std::cout << "2. See your bookings" << std::endl;
 		std::cout << "3.Exit" << std::endl;
@@ -52,7 +52,7 @@ void mainMenuAdmin()
 	int choice;
 	while (true)
 	{
-		std::cout << "---CINEMABOOKING---" << std::endl;
+		std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
 		std::cout << "1. Add offers" << std::endl;
 		std::cout << "2. Edit offers" << std::endl;
 		std::cout << "3.Exit" << std::endl;
@@ -81,7 +81,7 @@ void mainMenuManager()
 	int choice;
 	while (true)
 	{
-		std::cout << "---CINEMABOOKING---" << std::endl;
+		std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
 		std::cout << "1. Add offers" << std::endl;
 		std::cout << "2. Edit offers" << std::endl;
 		std::cout << "3. Add halls" << std::endl;

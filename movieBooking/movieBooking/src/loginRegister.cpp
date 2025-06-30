@@ -46,7 +46,7 @@ void drawLoginPage()
 {
 	std::string username;
 	std::string password;
-	std::cout << "---LOGIN---" << std::endl;
+	std::cout << std::endl << "---LOGIN---" << std::endl;
 
 	while (true)
 	{
@@ -90,7 +90,7 @@ void drawRegisterPage()
 	int choice;
 	while (true)
 	{
-		std::cout << "---REGISTER---" << std::endl;
+		std::cout << std::endl << "---REGISTER---" << std::endl;
 		std::cout << "1.As user" << std::endl;
 		std::cout << "2.As admin " << std::endl;
 		std::cout << "3.As manager " << std::endl;
@@ -116,16 +116,16 @@ void drawRegisterPage()
 
 void drawRegisterUser()
 {
-	std::cout << "---REGISTER---" << std::endl;
+	std::cout << std::endl << "---REGISTER---" << std::endl;
 	std::cin.ignore();
 	while (true)
 	{
-		std::cout << "Email: " << std::endl;
+		std::cout << "Email: ";
 		std::string email = getUserInput();
 		baseUser.setEmail(email);
-		if (exists("assets/accounts.txt", baseUser.getEmail()))
+		if (exists("assets/accounts.txt", baseUser.getEmail()) || baseUser.getEmail().find("@") == std::string::npos || baseUser.getEmail().find(".") == std::string::npos)
 		{
-			std::cerr << "Email already exists." << std::endl;
+			std::cerr << "Email already exists or is invalid." << std::endl;
 		}
 		else
 		{
@@ -135,7 +135,7 @@ void drawRegisterUser()
 
 	while (true)
 	{
-		std::cout << "Username: " << std::endl;
+		std::cout << "Username: ";
 		std::string username = getUserInput();
 		baseUser.setUsername(username);
 		if (exists("assets/accounts.txt", baseUser.getUsername()))
@@ -147,7 +147,7 @@ void drawRegisterUser()
 			break;
 		}
 	}
-	std::cout << "Password: " << std::endl;
+	std::cout << "Password: ";
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
 
@@ -166,17 +166,17 @@ void drawRegisterUser()
 
 void drawRegisterAdmin()
 {
-	std::cout << "---REGISTER---" << std::endl;
+	std::cout << std::endl << "---REGISTER---" << std::endl;
 	std::cin.ignore();
 
 	while (true)
 	{
-		std::cout << "Email: " << std::endl;
+		std::cout << "Email: ";
 		std::string email = getUserInput();
 		baseUser.setEmail(email);
-		if (exists("assets/accounts.txt", baseUser.getEmail()))
+		if (exists("assets/accounts.txt", baseUser.getEmail()) || baseUser.getEmail().find("@") == std::string::npos || baseUser.getEmail().find(".") == std::string::npos)
 		{
-			std::cerr << "Email already exists." << std::endl;
+			std::cerr << "Email already exists or is invalid." << std::endl;
 		}
 		else
 		{
@@ -186,7 +186,7 @@ void drawRegisterAdmin()
 
 	while (true)
 	{
-		std::cout << "Username: " << std::endl;
+		std::cout << "Username: ";
 		std::string username = getUserInput();
 		baseUser.setUsername(username);
 		if (exists("assets/accounts.txt", baseUser.getUsername()))
@@ -198,7 +198,7 @@ void drawRegisterAdmin()
 			break;
 		}
 	}
-	std::cout << "Password: " << std::endl;
+	std::cout << "Password: ";
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
 
@@ -207,9 +207,9 @@ void drawRegisterAdmin()
 
 	while (true)
 	{
-		std::cout << "Cinema id: " << std::endl;
+		std::cout << "Cinema id: ";
 		cinemaId = getUserInput();
-		std::cout << "Cinema name: " << std::endl;
+		std::cout << "Cinema name: ";
 		 cinemaName = getUserInput();
 		if (baseUser.validAdmin("assets/cinemas.txt", cinemaId, cinemaName))
 		{
@@ -236,17 +236,17 @@ void drawRegisterAdmin()
 
 void drawRegisterManager()
 {
-	std::cout << "---REGISTER---" << std::endl;
+	std::cout << std::endl << "---REGISTER---" << std::endl;
 	std::cin.ignore();
 
 	while (true)
 	{
-		std::cout << "Email: " << std::endl;
+		std::cout << "Email: ";
 		std::string email = getUserInput();
 		baseUser.setEmail(email);
-		if (exists("assets/accounts.txt", baseUser.getEmail()))
+		if (exists("assets/accounts.txt", baseUser.getEmail()) || baseUser.getEmail().find("@") == std::string::npos || baseUser.getEmail().find(".") == std::string::npos)
 		{
-			std::cerr << "Email already exists." << std::endl;
+			std::cerr << "Email already exists or is invalid." << std::endl;
 		}
 		else
 		{
@@ -256,7 +256,7 @@ void drawRegisterManager()
 
 	while (true)
 	{
-		std::cout << "Username: " << std::endl;
+		std::cout << "Username: ";
 		std::string username = getUserInput();
 		baseUser.setUsername(username);
 		if (exists("assets/accounts.txt", baseUser.getUsername()))
@@ -269,7 +269,7 @@ void drawRegisterManager()
 		}
 	}
 
-	std::cout << "Password: " << std::endl;
+	std::cout << "Password: ";
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
 	baseUser.setRank("MANAGER");

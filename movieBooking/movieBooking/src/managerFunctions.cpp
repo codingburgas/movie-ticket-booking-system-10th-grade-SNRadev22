@@ -94,7 +94,7 @@ void Manager::loadOwnedCinemas(const std::string fileName, std::string managerEm
 
 void Manager::addHalls()
 {
-	std::cout << "---ADD HALLS---" << std::endl;
+	std::cout << std::endl << "---ADD HALLS---" << std::endl;
 	std::cin.ignore();
 
 	std::cout << "Hall id: ";
@@ -149,7 +149,7 @@ void Manager::addHalls()
 
 void Manager::editHall()
 {
-	std::cout << "---EDIT HALL---" << std::endl;
+	std::cout << std::endl << "---EDIT HALL---" << std::endl;
 	if (this->ownedCinemas.size() == 1)
 	{
 		Hall& hall = this->ownedCinemas[0].getHalls()[0];
@@ -164,6 +164,7 @@ void Manager::editHall()
 		{
 		case 1: {
 			std::cout << "Enter new name: ";
+			std::cin.ignore();
 			std::string newName = getUserInput();
 			editFile("assets/halls.txt", hall.getName(), newName);
 			hall.setName(newName);
@@ -171,6 +172,7 @@ void Manager::editHall()
 		}
 		case 2: {
 			std::cout << "Enter new location: ";
+			std::cin.ignore();
 			std::string newLocation = getUserInput();
 			editFile("assets/halls.txt", hall.getLocation(), newLocation);
 			hall.setLocation(newLocation);
@@ -178,6 +180,7 @@ void Manager::editHall()
 		}
 		case 3: {
 			std::cout << "Enter new number of seats: ";
+			std::cin.ignore();
 			int newSeats;
 			std::cin >> newSeats;
 			editFile("assets/halls.txt", std::to_string(hall.getNumberOfSeats()), std::to_string(newSeats));
@@ -211,6 +214,7 @@ void Manager::editHall()
 		{
 		case 1: {
 			std::cout << "Enter new name: ";
+			std::cin.ignore();
 			std::string newName = getUserInput();
 			editFile("assets/halls.txt", hall.getName(), newName);
 			hall.setName(newName);
@@ -218,6 +222,7 @@ void Manager::editHall()
 		}
 		case 2: {
 			std::cout << "Enter new location: ";
+			std::cin.ignore();
 			std::string newLocation = getUserInput();
 			editFile("assets/halls.txt", hall.getLocation(), newLocation);
 			hall.setLocation(newLocation);
@@ -225,6 +230,7 @@ void Manager::editHall()
 		}
 		case 3: {
 			std::cout << "Enter new number of seats: ";
+			std::cin.ignore();
 			int newSeats;
 			std::cin >> newSeats;
 			editFile("assets/halls.txt", std::to_string(hall.getNumberOfSeats()), std::to_string(newSeats));
@@ -240,11 +246,11 @@ void Manager::editHall()
 
 void Manager::addCinema()
 {
-	std::cout << "---ADD CINEMA---" << std::endl;
+	std::cout << std::endl << "---ADD CINEMA---" << std::endl;
 
 	while (true)
 	{
-		std::cout << "Cinema id: " << std::endl;
+		std::cout << "Cinema id: ";
 		std::string cinemaId = getUserInput();
 		cinema.setId(cinemaId);
 		if (exists("assets/cinemas.txt", cinema.getId()))
@@ -263,7 +269,7 @@ void Manager::addCinema()
 
 	while (true)
 	{
-		std::cout << "Cinema name: " << std::endl;
+		std::cout << "Cinema name: ";
 		std::string cinemaName = getUserInput();
 		cinema.setName(cinemaName);
 		if (exists("assets/cinemas.txt", cinema.getName()))
@@ -278,7 +284,7 @@ void Manager::addCinema()
 		}
 	}
 
-	std::cout << "Cinema city: " << std::endl;
+	std::cout << "Cinema city: ";
 	std::string cinemaCity = getUserInput();
 	cinema.setCity(cinemaCity);
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getCity());
@@ -298,7 +304,7 @@ void Manager::addCinema()
 		addFragmentToFile("assets/cities.txt", cinemaCity, cinema.getId(), 0);
 	}
 
-	std::cout << "Cinema location: " << std::endl;
+	std::cout << "Cinema location: ";
 	std::string cinemaLocation = getUserInput();
 	cinema.setLocation(cinemaLocation);
 	addToFile("assets/cinemas.txt", std::ios::app, cinema.getLocation());
@@ -311,7 +317,8 @@ void Manager::addCinema()
 
 void Manager::editCinema()
 {
-	std::cout << "---EDIT CINEMA---" << std::endl;
+	std::cout << std::endl << "---EDIT CINEMA---" << std::endl;
+	std::cin.ignore();
 	if (this->ownedCinemas.size() == 1)
 	{
 		this->ownedCinemas[0].displayCinemas(ownedCinemas);
@@ -325,6 +332,7 @@ void Manager::editCinema()
 		{
 		case 1: {
 			std::cout << "Enter new name: ";
+			std::cin.ignore();
 			std::string newName = getUserInput();
 			editFile("assets/cinemas.txt", this->ownedCinemas[0].getName(), newName);
 			this->ownedCinemas[0].setName(newName);
@@ -332,6 +340,7 @@ void Manager::editCinema()
 		}
 		case 2: {
 			std::cout << "Enter new city: ";
+			std::cin.ignore();
 			std::string newCity = getUserInput();
 			editFile("assets/cinemas.txt", this->ownedCinemas[0].getCity(), newCity);
 			this->ownedCinemas[0].setCity(newCity);
@@ -339,6 +348,7 @@ void Manager::editCinema()
 		}
 		case 3: {
 			std::cout << "Enter new location: ";
+			std::cin.ignore();
 			std::string newLocation = getUserInput();
 			editFile("assets/cinemas.txt", this->ownedCinemas[0].getLocation(), newLocation);
 			this->ownedCinemas[0].setLocation(newLocation);
@@ -365,6 +375,7 @@ void Manager::editCinema()
 		{
 		case 1: {
 			std::cout << "Enter new name: ";
+			std::cin.ignore();
 			std::string newName = getUserInput();
 			editFile("assets/cinemas.txt", cinema.getName(), newName);
 			cinema.setName(newName);
@@ -372,6 +383,7 @@ void Manager::editCinema()
 		}
 		case 2: {
 			std::cout << "Enter new city: ";
+			std::cin.ignore();
 			std::string newCity = getUserInput();
 			editFile("assets/cinemas.txt", cinema.getCity(), newCity);
 			cinema.setCity(newCity);
@@ -379,6 +391,7 @@ void Manager::editCinema()
 		}
 		case 3: {
 			std::cout << "Enter new location: ";
+			std::cin.ignore();
 			std::string newLocation = getUserInput();
 			editFile("assets/cinemas.txt", cinema.getLocation(), newLocation);
 			cinema.setLocation(newLocation);
@@ -395,19 +408,22 @@ void Manager::displayCinemas()
 {
 	for (Cinema cinema : ownedCinemas)
 	{
+		std::cout << std::endl;
+		std::cout << "------------------------" << std::endl;
 		std::cout << "Cinema ID: " << cinema.getId() << std::endl;
 		std::cout << "Cinema Name: " << cinema.getName() << std::endl;
 		std::cout << "City: " << cinema.getCity() << std::endl;
 		std::cout << "Location: " << cinema.getLocation() << std::endl;
+		std::cout << "------------------------" << std::endl;
 	}
 }
 
 void Manager::addMovie()
 {
-	std::cout << "---ADD MOVIE---" << std::endl;
+	std::cout << std::endl << "---ADD MOVIE---" << std::endl;
 	std::cin.ignore();
 
-	std::cout << "Show ID: " << std::endl;
+	std::cout << "Show ID: ";
 	std::string showId = getUserInput();
 	movie.setId(showId);
 	addToFile("assets/movies.txt", std::ios::app, movie.getId());
@@ -446,12 +462,12 @@ void Manager::addMovie()
 	addToFile("assets/movies.txt", std::ios::app, std::to_string(movie.getPrice()));
 
 	cinema.displayCinemas(manager.ownedCinemas);
-	std::cout << "Select cinema by name: " << std::endl;
+	std::cout << "Select cinema by name: ";
 	std::string cinemaName = getUserInput();
 	Cinema& cinema = findCinema(cinemaName);
 
 	cinema.displayHalls();
-	std::cout << "Select hall by name: " << std::endl;
+	std::cout << "Select hall by Id: ";
 	std::string hallId = getUserInput();
 	Hall& currentHall = cinema.findHall(hallId);
 	if (currentHall.getName().empty())
@@ -468,8 +484,7 @@ void Manager::addMovie()
 
 void Manager::editMovie()
 {
-	std::cout << "---EDIT MOVIE---" << std::endl;
-
+	std::cout << std::endl << "---EDIT MOVIE---" << std::endl;
 	if (this->ownedCinemas.size() == 1)
 	{
 		this->ownedCinemas[0].dispalyMovies();
@@ -491,6 +506,7 @@ void Manager::editMovie()
 		{
 		case 1: {
 			std::cout << "Enter new title: ";
+			std::cin.ignore();
 			std::string newTitle = getUserInput();
 			editFile("assets/movies.txt", movie.getTitle(), newTitle);
 			movie.setTitle(newTitle);
@@ -498,6 +514,7 @@ void Manager::editMovie()
 		}
 		case 2: {
 			std::cout << "Enter new language: ";
+			std::cin.ignore();
 			std::string newLanguage = getUserInput();
 			editFile("assets/movies.txt", movie.getLanguage(), newLanguage);
 			movie.setLanguage(newLanguage);
@@ -505,6 +522,7 @@ void Manager::editMovie()
 		}
 		case 3: {
 			std::cout << "Enter new genre: ";
+			std::cin.ignore();
 			std::string newGenre = getUserInput();
 			editFile("assets/movies.txt", movie.getGenre(), newGenre);
 			movie.setGenre(newGenre);
@@ -512,6 +530,7 @@ void Manager::editMovie()
 		}
 		case 4: {
 			std::cout << "Enter new length (in minutes): ";
+			std::cin.ignore();
 			int newLength;
 			std::cin >> newLength;
 			editFile("assets/movies.txt", std::to_string(movie.getLength()), std::to_string(newLength));
@@ -520,6 +539,7 @@ void Manager::editMovie()
 		}
 		case 5: {
 			std::cout << "Enter new date (YYYY-MM-DD): ";
+			std::cin.ignore();
 			std::string newDate = getUserInput();
 			editFile("assets/movies.txt", movie.getDate(), newDate);
 			movie.setDate(newDate);
@@ -527,6 +547,7 @@ void Manager::editMovie()
 		}
 		case 6: {
 			std::cout << "Enter new price: ";
+			std::cin.ignore();
 			float newPrice;
 			std::cin >> newPrice;
 			editFile("assets/movies.txt", std::to_string(movie.getPrice()), std::to_string(newPrice));
@@ -564,6 +585,7 @@ void Manager::editMovie()
 		{
 		case 1: {
 			std::cout << "Enter new title: ";
+			std::cin.ignore();
 			std::string newTitle = getUserInput();
 			editFile("assets/movies.txt", movie.getTitle(), newTitle);
 			movie.setTitle(newTitle);
@@ -571,6 +593,7 @@ void Manager::editMovie()
 		}
 		case 2: {
 			std::cout << "Enter new language: ";
+			std::cin.ignore();
 			std::string newLanguage = getUserInput();
 			editFile("assets/movies.txt", movie.getLanguage(), newLanguage);
 			movie.setLanguage(newLanguage);
@@ -578,6 +601,7 @@ void Manager::editMovie()
 		}
 		case 3: {
 			std::cout << "Enter new genre: ";
+			std::cin.ignore();
 			std::string newGenre = getUserInput();
 			editFile("assets/movies.txt", movie.getGenre(), newGenre);
 			movie.setGenre(newGenre);
@@ -585,6 +609,7 @@ void Manager::editMovie()
 		}
 		case 4: {
 			std::cout << "Enter new length (in minutes): ";
+			std::cin.ignore();
 			int newLength;
 			std::cin >> newLength;
 			editFile("assets/movies.txt", std::to_string(movie.getLength()), std::to_string(newLength));
@@ -594,6 +619,7 @@ void Manager::editMovie()
 		case 5:
 		{
 			std::cout << "Enter new date (YYYY-MM-DD): ";
+			std::cin.ignore();
 			std::string newDate = getUserInput();
 			editFile("assets/movies.txt", movie.getDate(), newDate);
 			movie.setDate(newDate);
@@ -601,6 +627,7 @@ void Manager::editMovie()
 		}
 		case 6: {
 			std::cout << "Enter new price: ";
+			std::cin.ignore();
 			float newPrice;
 			std::cin >> newPrice;
 			editFile("assets/movies.txt", std::to_string(movie.getPrice()), std::to_string(newPrice));
