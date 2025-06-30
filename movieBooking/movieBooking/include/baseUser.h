@@ -18,6 +18,7 @@ public:
 	void setRank(std::string rankStr);
 
 	bool validAccount(const std::string& fileName, std::string usernameToFind, std::string passwordToFind);
+	bool validAdmin(const std::string& fileName, std::string idToFind, std::string nameToFind);
 
 private:
 	std::string email;

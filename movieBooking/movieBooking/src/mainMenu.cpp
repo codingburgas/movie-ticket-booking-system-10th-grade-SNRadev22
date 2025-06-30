@@ -62,11 +62,11 @@ void mainMenuAdmin()
 		switch (choice)
 		{
 		case 1:
-
+			manager.addMovie();
 			break;
 
 		case 2:
-
+			manager.editMovie();
 			break;
 
 		case 3:

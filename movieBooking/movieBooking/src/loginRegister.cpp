@@ -8,6 +8,7 @@
 #include<string>
 #include "../include/city.h"
 #include "../include/user.h"
+#include "../include/admin.h"
 
 City city;
 
@@ -71,9 +72,8 @@ void drawLoginPage()
 			}
 			else if (baseUser.getRank() == ADMIN)
 			{
-				user = User(baseUser);
-				cinema.loadHalls("assets/cinemas.txt", "assets/halls.txt");
-				cinema.loadMovies("assets/cinemas.txt", "assets/movies.txt");
+				admin = Admin(baseUser);
+
 			}
 			else if (baseUser.getRank() == USER)
 			{
@@ -156,6 +156,7 @@ void drawRegisterUser()
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
 	addToFile("assets/accounts.txt", std::ios::app, "");
 	addToFile("assets/accounts.txt", std::ios::app, "");
+	addToFile("assets/accounts.txt", std::ios::app, "");
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
 	addToFile("assets/accounts.txt", std::ios::app, std::string("USER"));
@@ -179,7 +180,6 @@ void drawRegisterAdmin()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
 			break;
 		}
 	}
@@ -195,39 +195,41 @@ void drawRegisterAdmin()
 		}
 		else
 		{
-			addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
 			break;
 		}
 	}
 	std::cout << "Password: " << std::endl;
 	std::string password = getUserInput();
 	baseUser.setPassword(password);
-	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
+
+	std::string cinemaId;
+	std::string cinemaName;
 
 	while (true)
 	{
-		std::cout << "Cinema's id: ";
-		std::string id;
-		std::cin >> id;
-		cinema.setId(id);
-		std::cout << std::endl;
-
-		std::cout << "Cinema's name: ";
-		std::string name;
-		getline(std::cin, name);
-		cinema.setName(name);
-		if (!cinema.validCinema("assets/cinemas.txt", cinema.getId(), cinema.getName()))
+		std::cout << "Cinema id: " << std::endl;
+		cinemaId = getUserInput();
+		std::cout << "Cinema name: " << std::endl;
+		 cinemaName = getUserInput();
+		if (baseUser.validAdmin("assets/cinemas.txt", cinemaId, cinemaName))
 		{
-			std::cerr << "Invalid cinema." << std::endl;
+			break;
 		}
 		else
 		{
-			std::cout << "Login successful!" << std::endl;
-			break;
+			std::cerr << "Invalid cinema ID or name." << std::endl;
 		}
+
 	}
-	user.setRank("ADMIN");
-	addToFile("assets/accounts.txt", std::ios::app, std::string("ADMIN"));
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
+	addToFile("assets/accounts.txt", std::ios::app, "");
+	addToFile("assets/accounts.txt", std::ios::app, "");
+	addToFile("assets/accounts.txt", std::ios::app, cinemaId);
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());
+	addToFile("assets/accounts.txt", std::ios::app, baseUser.getPassword());
+	addToFile("assets/accounts.txt", std::ios::app, "ADMIN");
+	admin = Admin(baseUser);
+	admin.setCinema(admin.findWorkingCinema(cinemaId));
 
 	selectMainMenu();
 }
@@ -273,6 +275,7 @@ void drawRegisterManager()
 	baseUser.setRank("MANAGER");
 
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getEmail());
+	addToFile("assets/accounts.txt", std::ios::app, "");
 	addToFile("assets/accounts.txt", std::ios::app, "");
 	addToFile("assets/accounts.txt", std::ios::app, "");
 	addToFile("assets/accounts.txt", std::ios::app, baseUser.getUsername());

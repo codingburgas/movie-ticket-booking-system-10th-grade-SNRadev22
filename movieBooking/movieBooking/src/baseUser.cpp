@@ -68,6 +68,7 @@ bool BaseUser::validAccount(const std::string& fileName, std::string usernameToF
 	{
 		std::getline(file, skip);
 		std::getline(file, skip);
+		std::getline(file, skip);
 		std::getline(file, username);
 		std::getline(file, password);
 		std::getline(file, rankStr);
@@ -78,6 +79,35 @@ bool BaseUser::validAccount(const std::string& fileName, std::string usernameToF
 			setUsername(username);
 			setPassword(password);
 			setRank(rankStr);
+			file.close();
+			return true;
+		}
+	}
+
+	file.close();
+	return false;
+}
+
+bool BaseUser::validAdmin(const std::string& fileName, std::string idToFind, std::string nameToFind)
+{
+	std::ifstream file(fileName);
+	if (!file)
+	{
+		std::cerr << "Error opening file: " << fileName << std::endl;
+		return false;
+	}
+
+	std::string id, name, skip, cityName;
+	while (std::getline(file, id))
+	{
+		std::getline(file, skip);
+		std::getline(file, skip);
+		std::getline(file, name);
+		std::getline(file, cityName);
+
+		if (id == idToFind && name == nameToFind)
+		{
+			City& city = findCity(cityName);
 			file.close();
 			return true;
 		}

@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="movieBooking.cpp" />
+    <ClCompile Include="src\admin.cpp" />
     <ClCompile Include="src\cinema.cpp" />
     <ClCompile Include="src\city.cpp" />
     <ClCompile Include="src\hall.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="src\utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\admin.h" />
     <ClInclude Include="include\cinema.h" />
     <ClInclude Include="include\city.h" />
     <ClInclude Include="include\hall.h" />

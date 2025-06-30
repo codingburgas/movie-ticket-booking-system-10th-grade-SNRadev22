@@ -1,7 +1,7 @@
 333
- 111
+ A1
 
-CC
+Cinema City
 Burgas
 MG
 SNR

@@ -60,6 +60,7 @@ void Manager::loadOwnedCinemas(const std::string fileName, std::string managerEm
 				while (getline(cinemaFile, id))
 				{
 					getline(cinemaFile, skipHalls);
+					getline(cinemaFile, skipHalls);
 					getline(cinemaFile, name);
 					getline(cinemaFile, city);
 					getline(cinemaFile, location);
@@ -74,6 +75,7 @@ void Manager::loadOwnedCinemas(const std::string fileName, std::string managerEm
 						cinema.setLocation(location);
 						cinema.setOwner(owner);
 						cinema.loadHalls("assets/cinemas.txt", "assets/halls.txt");
+						cinema.loadMovies("assets/cinemas.txt", "assets/movies.txt");
 
 						ownedCinemas.push_back(cinema);
 						break;

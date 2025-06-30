@@ -48,6 +48,9 @@
     <ClCompile Include="src\movie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\movie.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
