@@ -17,6 +17,7 @@ public:
 	void setLocation(std::string newLocation);
 	void setNumberOfSeats(int seats);
 	void setRows(int newRows);
+	void setSeatLayout(std::vector<std::string> newLayout);
 
 	void displayLayout();
 	void setLayout();
@@ -26,7 +27,7 @@ private:
 	std::string name;
 	std::string location;
 	int numberOfSeats;
-	char seatLayout[100][100];
+	std::vector<std::string> seatLayout;
 	int rows;
 };
 

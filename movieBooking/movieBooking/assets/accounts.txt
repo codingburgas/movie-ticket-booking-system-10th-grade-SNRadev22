@@ -1,7 +1,7 @@
-MAN@
- 111
+SNR@
+ 333
 
 
-MAN
+SNR
 123
 MANAGER

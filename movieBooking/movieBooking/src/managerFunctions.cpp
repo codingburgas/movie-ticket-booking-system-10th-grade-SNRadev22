@@ -452,15 +452,15 @@ void Manager::addMovie()
 
 	cinema.displayHalls();
 	std::cout << "Select hall by name: " << std::endl;
-	std::string hallName = getUserInput();
-	Hall& currentHall = cinema.findHall(hallName);
+	std::string hallId = getUserInput();
+	Hall& currentHall = cinema.findHall(hallId);
 	if (currentHall.getName().empty())
 	{
 		std::cerr << "Hall not found in the selected cinema." << std::endl;
 		return;
 	}
 	movie.setHall(currentHall);
-	addToFile("assets/movies.txt", std::ios::app, movie.getHall().getName());
+	addToFile("assets/movies.txt", std::ios::app, movie.getHall().getId());
 
 	cinema.addMovie(movie);
 	addFragmentToFile("assets/cinemas.txt", cinema.getId(), movie.getId(), 1);

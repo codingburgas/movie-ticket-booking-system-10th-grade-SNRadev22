@@ -119,94 +119,72 @@ Hall& Cinema::findHall(std::string nameToFind)
 void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hallFileName)
 {
 	std::ifstream cinemaFile(cinemaFileName);
-	if (!cinemaFile.is_open())
-	{
+	if (!cinemaFile.is_open()) {
 		std::cerr << "Error opening cinema file: " << cinemaFileName << std::endl;
 		return;
 	}
 
 	std::ifstream hallFile(hallFileName);
-	if (!hallFile.is_open())
-	{
+	if (!hallFile.is_open()) {
 		std::cerr << "Error opening hall file: " << hallFileName << std::endl;
 		return;
 	}
 
 	std::string line;
-	while (std::getline(cinemaFile, line))
-	{
-		if (line == this->id)
-		{
-			std::cerr << "Found cinema ID: " << line << std::endl;
-
+	while (std::getline(cinemaFile, line)) {
+		if (line == this->id) {
 			std::string hallsLine;
-			if (std::getline(cinemaFile, hallsLine))
-			{
-				std::cerr << "Halls line: " << hallsLine << std::endl;
+			if (!std::getline(cinemaFile, hallsLine)) {
+				std::cerr << "Missing hall IDs after cinema ID: " << line << std::endl;
+				break;
+			}
 
-				std::istringstream iss(hallsLine);
-				std::string hallId;
+			std::istringstream iss(hallsLine);
+			std::string hallId;
 
-				while (iss >> hallId)
-				{
-					std::cerr << "Looking for hall ID: " << hallId << std::endl;
+			while (iss >> hallId) {
+				hallFile.clear();
+				hallFile.seekg(0);
 
-					hallFile.clear();
-					hallFile.seekg(0);
+				std::string id, name, location, sizeStr, rowsStr;
 
-					std::string id, name, location, sizeStr;
-					bool foundHall = false;
-
-					while (std::getline(hallFile, id))
-					{
-						if (!std::getline(hallFile, name) ||
-							!std::getline(hallFile, location) ||
-							!std::getline(hallFile, sizeStr))
-						{
-							std::cerr << "Invalid hall format or file ends prematurely for hall ID: " << id << std::endl;
-							break;
-						}
-
-						if (id == hallId)
-						{
-							std::cerr << "Found hall ID: " << id << ", Name: " << name
-								<< ", Location: " << location << ", Size: " << sizeStr << std::endl;
-
-							Hall hall;
-							hall.setId(id);
-							hall.setName(name);
-							hall.setLocation(location);
-							try
-							{
-								hall.setNumberOfSeats(std::stoi(sizeStr));
-							}
-							catch (const std::exception& e)
-							{
-								std::cerr << "Error converting size to int for hall " << name << ": " << e.what() << std::endl;
-								hall.setNumberOfSeats(0);
-							}
-
-							this->addHall(hall);
-							foundHall = true;
-							break;
-						}
+				while (std::getline(hallFile, id)) {
+					if (!std::getline(hallFile, name) ||
+						!std::getline(hallFile, location) ||
+						!std::getline(hallFile, sizeStr) ||
+						!std::getline(hallFile, rowsStr)) {
+						std::cerr << "Invalid hall format or file ends prematurely for hall ID: " << id << std::endl;
+						break;
 					}
 
-					if (!foundHall)
-					{
-						std::cerr << "Hall ID " << hallId << " not found in " << hallFileName << std::endl;
+					if (id == hallId) {
+						Hall hall;
+						hall.setId(id);
+						hall.setName(name);
+						hall.setLocation(location);
+						hall.setNumberOfSeats(std::stoi(sizeStr));
+						int numRows = std::stoi(rowsStr);
+						hall.setRows(numRows);
+
+						std::vector<std::string> layout;
+						for (int i = 0; i < numRows; ++i)
+						{
+							std::string layoutLine;
+							if (!std::getline(hallFile, layoutLine)) {
+								std::cerr << "Missing layout line for row " << i + 1 << " in hall " << id << std::endl;
+								break;
+							}
+							layout.push_back(layoutLine);
+						}
+						hall.setSeatLayout(layout);
+						this->addHall(hall);
+						break;
 					}
 				}
 			}
-			else
-			{
-				std::cerr << "No halls line found after cinema ID: " << line << std::endl;
-			}
-
 			break;
 		}
 	}
-
 	cinemaFile.close();
 	hallFile.close();
 }

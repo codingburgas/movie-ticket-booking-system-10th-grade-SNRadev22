@@ -1,4 +1,5 @@
 #include "../include/hall.h"
+#include "../include/Utility.h"
 
 Hall hall;
 
@@ -43,6 +44,10 @@ void Hall::setRows(int newRows)
 {
 	rows = newRows;
 }
+void Hall::setSeatLayout(std::vector<std::string> newLayout)
+{
+	seatLayout = newLayout;
+}
 
 void Hall::setLayout()
 {
@@ -50,20 +55,25 @@ void Hall::setLayout()
 	std::cout << "Enter number of rows: ";
 	std::cin >> numOfRows;
 	rows = numOfRows;
+	addToFile("assets/halls.txt", std::ios::app, std::to_string(rows));
 	std::cin.ignore();
 
-	for (size_t i = 0; i < rows; i++)
+	for (int i = 0; i < rows; ++i)
 	{
+		std::string rowLayout;
 		std::cout << "Enter layout for row " << i + 1 << ": ";
-		std::cin.getline(seatLayout[i], 100);
+		std::getline(std::cin, rowLayout);
+
+		seatLayout.push_back(rowLayout);
+		addToFile("assets/halls.txt", std::ios::app, rowLayout);
 	}
 }
 
 void Hall::displayLayout()
 {
 	std::cout << "Seat Layout: " << std::endl;
-	for (size_t i = 0; i < rows; i++)
+	for (std::string& row : seatLayout)
 	{
-		std::cout << seatLayout[i] << std::endl;
+		std::cout << row << std::endl;
 	}
 }
