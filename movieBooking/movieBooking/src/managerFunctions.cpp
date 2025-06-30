@@ -118,6 +118,9 @@ void Manager::addHalls()
 	hall.setNumberOfSeats(numberOfSeats);
 	addToFile("assets/halls.txt", std::ios::app, std::to_string(hall.getNumberOfSeats()));
 
+	std::cout << "Now you'll add the seat layout! " << std::endl;
+	hall.setLayout();
+
 	if (this->ownedCinemas.size() == 1)
 	{
 		displayCinemas();

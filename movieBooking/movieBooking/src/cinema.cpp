@@ -351,6 +351,7 @@ void Cinema::displayHalls()
 		std::cout << "Hall Name: " << hall.getName() << std::endl;
 		std::cout << "Location: " << hall.getLocation() << std::endl;
 		std::cout << "Number of Seats: " << hall.getNumberOfSeats() << std::endl;
+		hall.displayLayout();
 		std::cout << "------------------------" << std::endl;
 	}
 }
