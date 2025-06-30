@@ -32,7 +32,7 @@ void City::loadCities(const std::string fileName)
         currentCity.setName(cityName);
 
         std::string line;
-        if (getline(cityFile, line))  // line with cinema IDs
+        if (getline(cityFile, line))
         {
             std::istringstream iss(line);
             std::string idToFind;
@@ -93,7 +93,7 @@ std::string City::getName()
 	return name;
 }
 
-std::vector<Cinema> City::getCinemas()
+std::vector<Cinema>& City::getCinemas()
 {
 	return cinemas;
 }

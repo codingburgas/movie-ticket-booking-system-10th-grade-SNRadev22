@@ -27,7 +27,8 @@ void mainMenuUser()
 		std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
 		std::cout << "1. Browse booking offers" << std::endl;
 		std::cout << "2. See your bookings" << std::endl;
-		std::cout << "3.Exit" << std::endl;
+		std::cout << "3. Search for a movie" << std::endl;
+		std::cout << "4.Exit" << std::endl;
 		std::cout << "What would you like to do today? ";
 		std::cin >> choice;
 
@@ -42,39 +43,63 @@ void mainMenuUser()
 			break;
 
 		case 3:
-			exit(0);
-		}
-	}
-}
-
-void mainMenuAdmin()
-{
-	int choice;
-	while (true)
-	{
-		std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
-		std::cout << "1. Add offers" << std::endl;
-		std::cout << "2. Edit offers" << std::endl;
-		std::cout << "3.Exit" << std::endl;
-		std::cout << "What would you like to do today? ";
-		std::cin >> choice;
-
-		switch (choice)
 		{
-		case 1:
-			manager.addMovie();
-			break;
+			std::fstream file;
+			std::string cityName;
 
-		case 2:
-			manager.editMovie();
-			break;
+			file.open("assets/cities.txt");
+			if (!file.is_open())
+			{
+				std::cerr << "Error while opening file!" << std::endl;
+			}
+			else
+			{
+				while (getline(file, cityName))
+				{
+					std::cout << cityName << std::endl;
+					getline(file, cityName);
+				}
+				std::string chosenCityName = getUserInput();
+				City& city = findCity(chosenCityName);
 
-		case 3:
-			exit(0);
-			break;
+				user.searchMovies(city.getCinemas());
+				break;
+			}
 		}
-	}
+		case 4:
+			exit(0);
+			}
+		}
 }
+
+		void mainMenuAdmin()
+		{
+			int choice;
+			while (true)
+			{
+				std::cout << std::endl << "---CINEMABOOKING---" << std::endl;
+				std::cout << "1. Add offers" << std::endl;
+				std::cout << "2. Edit offers" << std::endl;
+				std::cout << "3.Exit" << std::endl;
+				std::cout << "What would you like to do today? ";
+				std::cin >> choice;
+
+				switch (choice)
+				{
+				case 1:
+					manager.addMovie();
+					break;
+
+				case 2:
+					manager.editMovie();
+					break;
+
+				case 3:
+					exit(0);
+					break;
+				}
+			}
+		}
 
 void mainMenuManager()
 {

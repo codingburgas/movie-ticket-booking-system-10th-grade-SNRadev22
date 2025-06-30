@@ -11,7 +11,7 @@ public:
 	void loadCities(const std::string fileName);
 
 	std::string getName();
-	std::vector<Cinema> getCinemas();
+	std::vector<Cinema>& getCinemas();
 
 	void setName(std::string newName);
 	void setCinemas(std::vector<Cinema> cinemasList);

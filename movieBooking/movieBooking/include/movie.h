@@ -22,7 +22,7 @@ public:
 	void setLength(int length);
 	void setDate(std::string date);
 	void setPrice(float price);
-	void setHall(Hall hall);
+	void setHall(Hall& hall);
 
 private:
 	std::string id;

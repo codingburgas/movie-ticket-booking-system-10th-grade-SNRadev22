@@ -26,7 +26,7 @@ public:
 	bool validCinema(const std::string& fileName, std::string idToFind, std::string nameToFind);
 	void displayCinemas(std::vector<Cinema> cinemas);
 	void addHall(Hall hall);
-	Hall& findHall(std::string nameToFind);
+	Hall& findHall(std::string idToFind);
 	void addMovie(Movie movie);
 	void loadHalls(const std::string& cinemaFileName, const std::string& hallFileName);
 	void loadMovies(const std::string& cinemaFileName, const std::string& movieFileName);

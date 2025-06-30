@@ -29,6 +29,8 @@ public:
 	void bookMovie(Movie& movie);
 
 	void viewBookings();
+	void searchMovies(std::vector<Cinema>& cinemas);
+
 private:
 	std::vector<Movie> bookings;
 };

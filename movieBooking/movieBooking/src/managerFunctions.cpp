@@ -251,6 +251,7 @@ void Manager::addCinema()
 	while (true)
 	{
 		std::cout << "Cinema id: ";
+		std::cin.ignore();
 		std::string cinemaId = getUserInput();
 		cinema.setId(cinemaId);
 		if (exists("assets/cinemas.txt", cinema.getId()))

@@ -128,3 +128,63 @@ void User::viewBookings()
 		std::cout << "------------------------" << std::endl;
 	}
 }
+
+void User::searchMovies(std::vector<Cinema>& cinemas)
+{
+	std::cout << "---SEARCH MOVIES---\n";
+	std::cout << "Search by:\n1. Title\n2. Language\n3. Genre\n4. Release Date\nYour choice: ";
+	int choice;
+	std::cin >> choice;
+	std::cin.ignore();
+
+	std::string query;
+	std::cout << "Enter your search query: ";
+	std::getline(std::cin, query);
+
+	bool found = false;
+
+	for (Cinema& cinema : cinemas)
+	{
+		for (Movie& movie : cinema.getMovies())
+		{
+			bool match = false;
+
+			switch (choice)
+			{
+			case 1:
+				match = (movie.getTitle() == query);
+				break;
+			case 2:
+				match = (movie.getLanguage() == query);
+				break;
+			case 3:
+				match = (movie.getGenre() == query);
+				break;
+			case 4:
+				match = (movie.getDate() == query);
+				break;
+			default:
+				std::cerr << "Invalid choice.\n";
+				return;
+			}
+
+			if (match)
+			{
+				std::cout << "\nTitle: " << movie.getTitle()
+					<< "\nLanguage: " << movie.getLanguage()
+					<< "\nGenre: " << movie.getGenre()
+					<< "\nDate: " << movie.getDate()
+					<< "\nPrice: $" << movie.getPrice()
+					<< "\nHall: " << movie.getHall().getName()
+					<< "\nCinema: " << cinema.getName()
+					<< "\n---------------------------\n";
+				found = true;
+			}
+		}
+	}
+
+	if (!found)
+	{
+		std::cout << "No movies found matching your criteria.\n";
+	}
+}

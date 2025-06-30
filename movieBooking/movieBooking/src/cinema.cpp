@@ -107,15 +107,17 @@ void Cinema::addMovie(Movie movie)
 	movies.push_back(movie);
 }
 
-Hall& Cinema::findHall(std::string nameToFind)
+Hall& Cinema::findHall(std::string idToFind)
 {
 	for (size_t i = 0; i < halls.size(); i++)
 	{
-		if (halls[i].getId() == nameToFind)
+		if (halls[i].getId() == idToFind)
 		{
 			return halls[i];
 		}
 	}
+	Hall emptyHall;
+	return emptyHall;
 }
 
 void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hallFileName)
@@ -137,7 +139,7 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 		if (line == this->id) {
 			std::string hallsLine;
 			if (!std::getline(cinemaFile, hallsLine)) {
-				std::cerr << "Missing hall IDs after cinema ID: " << line << std::endl;
+			
 				break;
 			}
 
@@ -155,7 +157,7 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 						!std::getline(hallFile, location) ||
 						!std::getline(hallFile, sizeStr) ||
 						!std::getline(hallFile, rowsStr)) {
-						std::cerr << "Invalid hall format or file ends prematurely for hall ID: " << id << std::endl;
+						
 						break;
 					}
 
@@ -173,7 +175,7 @@ void Cinema::loadHalls(const std::string& cinemaFileName, const std::string& hal
 						{
 							std::string layoutLine;
 							if (!std::getline(hallFile, layoutLine)) {
-								std::cerr << "Missing layout line for row " << i + 1 << " in hall " << id << std::endl;
+								
 								break;
 							}
 							layout.push_back(layoutLine);
@@ -214,24 +216,21 @@ void Cinema::loadMovies(const std::string& cinemaFileName, const std::string& mo
 	{
 		if (line == this->id)
 		{
-			std::cout << "Found cinema ID: " << this->id << std::endl;
 
-			std::getline(cinemaFile, line); // Skip halls
+			std::getline(cinemaFile, line);
 			std::string moviesLine;
-			if (std::getline(cinemaFile, moviesLine)) // Movies line
+			if (std::getline(cinemaFile, moviesLine))
 			{
-				std::cout << "Movies line: " << moviesLine << std::endl;
 
 				std::istringstream iss(moviesLine);
 				std::string movieId;
 				while (iss >> movieId)
 				{
-					std::cout << "Looking for movie ID: " << movieId << std::endl;
 
 					movieFile.clear();
 					movieFile.seekg(0);
 
-					std::string id, title, language, genre, date, hallName;
+					std::string id, title, language, genre, date, hallId;
 					int length;
 					float price;
 
@@ -245,15 +244,13 @@ void Cinema::loadMovies(const std::string& cinemaFileName, const std::string& mo
 							!std::getline(movieFile, date) ||
 							!(movieFile >> price) ||
 							!movieFile.ignore() ||
-							!std::getline(movieFile, hallName))
+							!std::getline(movieFile, hallId))
 						{
-							std::cerr << "Invalid movie format or file ends prematurely." << std::endl;
 							break;
 						}
 
 						if (id == movieId)
 						{
-							std::cout << "Match found. Title: " << title << std::endl;
 
 							Movie movie;
 							movie.setId(id);
@@ -264,14 +261,14 @@ void Cinema::loadMovies(const std::string& cinemaFileName, const std::string& mo
 							movie.setDate(date);
 							movie.setPrice(price);
 
-							Hall hall = findHall(hallName);
+							Hall& hall = findHall(hallId);
 							if (!hall.getName().empty())
 							{
 								movie.setHall(hall);
 							}
 							else
 							{
-								std::cerr << "Hall not found: " << hallName << std::endl;
+
 							}
 
 							this->addMovie(movie);
@@ -282,7 +279,7 @@ void Cinema::loadMovies(const std::string& cinemaFileName, const std::string& mo
 			}
 			else
 			{
-				std::cerr << "No movie line found after cinema ID." << std::endl;
+
 			}
 			break;
 		}

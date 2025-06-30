@@ -63,7 +63,7 @@ void Movie::setPrice(float newPrice)
 {
 	price = newPrice;
 }
-void Movie::setHall(Hall newHall)
+void Movie::setHall(Hall& newHall)
 {
 	hall = newHall;
 }
